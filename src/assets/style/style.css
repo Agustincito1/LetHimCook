@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'FuenteStyleII';
+    src: url('../style/font/Karla-VariableFont_wght.ttf') format('truetype');
+    font-weight: 500;
+}
+
+
+
+
+body, html, main{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;   
+    box-sizing: border-box;
+    font-family: "FuenteStyleII";
+}

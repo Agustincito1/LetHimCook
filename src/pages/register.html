@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="registerStyle.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/styleRegister.css">
     <title>LetHimCook - Register</title>
 </head>
-<body>
+<body class="body"> 
     <header>
-
+        <a href="../../index.html">Inicio</a>
     </header>
     <main class="main">
         <section class="main__section">
@@ -17,21 +18,23 @@
                 <hr class="form__hr">
                 <label for="name" class="form__label">
                     <p class="label__title">Nombre</p>
-                    <input type="text" name="name" placeholder="Ingresa un nombre" class="form__input">
+                    <input type="text" name="name" placeholder="Ingresa un nombre" class="label__input">
                 </label>
                 <label for="email" class="form__label">
                     <p class="label__title">E-mail</p>
-                    <input type="email" name="email" placeholder="Ingresa un email" class="form__input">
+                    <input type="email" name="email" placeholder="Ingresa un email" class="label__input">
                 </label>
                 <label for="password" class="form__label">
                     <p class="label__title">Contraseña</p>
-                    <input type="password" name="password" placeholder="Ingresa una contraseña" class="form__input">
+                    <input type="password" name="password" placeholder="Ingresa una contraseña" class="label__input">
                 </label>
                 <label for="repeatPassword" class="form__label">
                     <p class="label__title">Repite la contraseña</p>
-                    <input type="password" name="repeatPassword" placeholder="Repite una contraseña" class="form__input">
+                    <input type="password" name="repeatPassword" placeholder="Repite una contraseña" class="label__input">
                 </label>
                 <button type="submit" class="form__button">Registrarte</button>
+                <hr class="form__hr">
+                <p>ya tienes cuenta? <a href="./login.html">Inicia sesion</a></p>
             </form>
         </section>
     </main>

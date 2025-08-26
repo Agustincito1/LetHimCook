@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'FuenteStyle';
+    src: url('../style/font/MervaleScript-Regular.otf') format('truetype');
+    font-weight: 100;
+}
+
+
+.body{
+    padding: 2%;
+    background-color: #4E4E4E;
+}
+
+.main{
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+.main__section{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    place-items: center;
+}   
+
+.main__section--form{
+    position: relative;
+    width: 60%;
+    max-width: 500px;
+    max-height: 500px;
+    box-sizing: border-box;
+    height: 80%;
+    background-color: #A6A6A6;
+    border-radius: 1vw;
+    display: grid;
+    gap: 5%;
+    grid-template-rows: 5% 20% 20% 15% 1% 1%; 
+    padding: 4%;
+    grid-template-columns: 1fr;
+    place-content: center;
+}
+
+.form__title{
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+    box-sizing: border-box;
+    width: 70%;
+    background-color: #FAF3E0;
+    position: absolute;
+    margin: 0;
+    left: 15%;
+    top: -4vw;
+    text-align: center;
+    font-family: "FuenteStyle";
+    font-size: clamp(1rem, 6vw, 4rem);
+    font-weight: 100;
+}
+
+.form__hr{
+    border-color: 000000;
+    width: 60%;
+    height: 0.3vw;
+    background-color: #000000;
+}
+
+
+.form__label{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 80%;
+    place-content: center;
+    grid-template-columns: 90%;
+    height: 100%;
+}
+
+.label__input::placeholder{
+    color: #FFFFFF;
+}
+.label__title{
+    background-color: #FAF3E0;
+    position: absolute;
+    padding: 0.6vw;
+    margin: 0;
+    top: -1.5vw;
+    border-radius: 0.2vw;
+}
+
+.form__button{
+    width: 80%;
+    margin: auto;
+    height: 100%;
+    display: block;
+    border-radius: 0.5vw;
+    border: none;
+    cursor: pointer;
+}
+.label__input{
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #4E4E4E;
+    color: #FFFFFF;
+    border-radius: 0.2vw;
+    border: none;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+}
+
+.form__p{
+    justify-self: center;
+}

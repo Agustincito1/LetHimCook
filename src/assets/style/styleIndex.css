@@ -1,8 +1,7 @@
-html, body, main{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+@font-face {
+    font-family: 'FuenteStyle';
+    src: url('../style/font/MervaleScript-Regular.otf') format('truetype');
+    font-weight: 100;
 }
 
 body{
@@ -38,16 +37,18 @@ body{
     display: grid;
     place-items: center;
     text-decoration: none;
-    color: black;
+    color: #6B4226;
     padding: 5%;
     text-align: center;
     box-sizing: content-box;
-    background-color: aqua;
+    background-color: #FFFFFF;
     border-radius: 0.5vw;
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 2rem);
     transition: all 0.2s;
+    box-shadow: 0 0 0.5vw #6B4226;
 }
 .article__title{
+    font-family: "FuenteStyle";
     margin: 0;
     height: 100%;
     display: grid;
@@ -55,12 +56,13 @@ body{
     justify-items: center;
     grid-template-columns: 1fr;
     place-content: end;
-    font-size: clamp(4rem, 14vw, 10rem);
+    font-size: clamp(4rem, 20vw, 14rem);
+    font-weight: 100;
 }
 .article__subtitle{
     margin: 0;
     text-align: center;
-    font-size: clamp(2rem, 3vw, 2em);
+    font-size: clamp(2rem, 1.5vw, 1.5em);
 
 }
 
