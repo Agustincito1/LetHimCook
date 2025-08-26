@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetHimCook - sesion</title>
+</head>
+<body>
+
+    <header>
+        <a href="../../index.html">Inicio</a>
+    </header>
+    <main>
+        <form action="" method="POST" id="formulario">
+            <h1>Inicio de sesion</h1>
+            <label for="username">Usuario</label>
+            <input type="text" name="username" id="" placeholder="Ingresa el nombre de usuario" >
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" id="" placeholder="Ingresa la contraseña">
+            <button type="submit" name="submit" onclick="verifyForm()">Iniciar sesion</button>
+        </form>
+    </main>
+</body>
+<script>
+    
+    function verifyForm(){
+        const form = document.getElementById("formulario");
+
+        form.forEach(element => {
+            console.log(element)
+        });
+    }
+</script>
+</html>
