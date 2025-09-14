@@ -13,7 +13,9 @@
     </header>
     <main class="main">
         <section class="main__section">
-            <form action="" method="POST" id="formulario" class="main__section--form">
+            <div class="err" id="contenedorErr">
+            </div>
+            <form action="" method="POST" id="logForm" class="main__section--form">
                 <h1 class="form__title">LetHimCook</h1>
                 <hr class="form__hr">
                 <label for="username" class="form__label">
@@ -26,11 +28,16 @@
                     <input type="password" name="password" id="" placeholder="Ingresa la contraseña" class="label__input">
                 </label>
                 
-                <button type="submit" name="submit" onclick="verifyForm()" class="form__button">Iniciar sesion</button>
+                <button type="submit" name="submit" class="form__button">Iniciar sesion</button>
                 <hr class="form__hr">
                 <p class="form__p">No tienes una cuenta? <a href="./register.html">Registrate</a></p>
             </form>
+            <div class="success">
+                Registro Exitoso
+            </div>
         </section>
     </main>
+    <script src="../assets/script/verifyFormLog.js"></script>
 </body>
+
 </html>

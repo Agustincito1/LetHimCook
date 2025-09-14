@@ -13,7 +13,9 @@
     </header>
     <main class="main">
         <section class="main__section">
-            <form action="" method="POST" class="main__section--form">
+            <div class="err" id="contenedorErr">
+            </div>
+            <form action="" method="POST" class="main__section--form" id="regForm">
                 <h1 class="form__title">LetHimCook</h1>
                 <hr class="form__hr">
                 <label for="name" class="form__label">
@@ -22,7 +24,7 @@
                 </label>
                 <label for="email" class="form__label">
                     <p class="label__title">E-mail</p>
-                    <input type="email" name="email" placeholder="Ingresa un email" class="label__input">
+                    <input type="text" name="email" placeholder="Ingresa un email" class="label__input">
                 </label>
                 <label for="password" class="form__label">
                     <p class="label__title">Contraseña</p>
@@ -32,14 +34,21 @@
                     <p class="label__title">Repite la contraseña</p>
                     <input type="password" name="repeatPassword" placeholder="Repite una contraseña" class="label__input">
                 </label>
+                
                 <button type="submit" class="form__button">Registrarte</button>
                 <hr class="form__hr">
                 <p>ya tienes cuenta? <a href="./login.html">Inicia sesion</a></p>
             </form>
+            
+            <div class="success">
+                Registro Exitoso
+            </div>
         </section>
+        
     </main>
     <footer>
 
     </footer>
+    <script src="../assets/script/verifyFormReg.js"></script>
 </body>
 </html>
