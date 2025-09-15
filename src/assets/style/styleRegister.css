@@ -164,6 +164,14 @@
     height: 3vw;
 }
 .success{
-    color: green;
+
+    background-color: rgba(13, 241, 13, 0.87);
+    color: rgb(0, 0, 0);
+    font-size: clamp(1rem, 2vw, 3rem);
+    border-radius: 0.5vw;
+    position: absolute;
     display: none;
+    opacity: 0;
+    transition: all 0.4s;
+    padding: 5%;
 }
