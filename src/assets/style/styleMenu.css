@@ -1,0 +1,148 @@
+
+@font-face {
+    font-family: 'FuenteStyle';
+    src: url('../style/font/MervaleScript-Regular.otf') format('truetype');
+    font-weight: 100;
+}
+*{
+    user-select: none;
+}
+body{
+    background-color: #4E4E4E;
+}
+.main{
+    display: grid;
+    box-sizing: content-box;
+    grid-template-columns: 0.4fr 1fr;
+    grid-template-rows: 100%;
+    height: 100%;
+    
+}
+
+.main__aside{
+    height: 100%;
+    background-color: #78806C;
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 0.2fr;
+    border-right: 0.5vw solid #6D765D;
+}
+
+.aside--title{
+    font-family: "FuenteStyle";
+    font-size: clamp(1rem, 5vw, 6rem);
+    background-color: #A3B18A;
+    padding: 2%;
+    box-sizing: border-box;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    font-weight: 100;
+    color: #FFFFFF;
+}
+
+.aside--nav{
+    display: grid;
+    padding: 5%;
+    min-width: 200px;
+    font-size: clamp(1rem, 2vw, 3rem);
+    justify-items: center;
+}
+.aside--nav a{
+    text-decoration: none;
+    height: fit-content;
+    width: fit-content;
+    transition: all 0.3s;
+    color: #FFFFFF;
+}
+
+.aside--nav a:hover{
+    transform: scale(1.1,1.1);
+}
+
+.aside--btnC{
+    transition: all 0.3s;
+    background-color: #4E4E4E;
+    color: #fff;
+    border: none;
+    width: 80%;
+    height: 80%;
+    justify-self: center;
+    border-radius: 0.2vw;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    cursor: pointer;
+}
+
+.aside--btnC:hover{
+    transform: scale(1.1,1.1);
+}
+
+.main__section{
+    padding: 5%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-rows: 20% 7% 2.5% 70%;
+    gap: 0.5vw;
+    grid-template-columns: 1fr;
+}
+
+.section--articleProfile{
+    padding: 2%;
+}
+.articleProfile--linkProfile{
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    text-decoration: none;
+    max-width: 50vw;
+    width: fit-content;
+    gap: 1vw;
+
+}
+
+.articleProfile--linkProfile img{
+    border-radius: 100%;
+
+}
+
+
+.articleProfile--linkProfile h2{
+    white-space: nowrap;
+    flex: 1;
+    box-sizing: border-box;
+    width: fit-content;
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    height: fit-content;
+    color: #fff;
+    font-size: clamp(1rem ,2vw, 5rem);
+    
+}
+
+.section--filterCont{
+    display: grid;
+    place-content: start;
+    grid-template-columns: 40%;
+    grid-template-rows: 100%;
+}
+
+.section--filterCont input{
+    background-color: #A3B18A;
+    border-radius: 0.5vw;
+    padding: 2%;
+    border: none;
+    color: #414040;
+    font-size: clamp(1rem, 1.2vw, 3rem);
+}
+
+
+.section--hr{
+    border: none;
+    transform: rotate(180deg); 
+    width: 100%;
+    background-color: #A3B18A;
+}
+
+.section--articleRec{
+    overflow-y: auto;
+   
+}

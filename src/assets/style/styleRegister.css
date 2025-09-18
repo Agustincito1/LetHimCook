@@ -37,19 +37,22 @@
 .main__section--form{
     
     flex: 1;
-    padding: 4%;
+    padding: 2%;
     position: relative;
     max-width: 500px;
-    max-height: 800px;
+    max-height: 600px;
     min-width: 50px;
     box-sizing: border-box;
     width: 60%;
+    
     height: 100%;
     border-radius: 0.5vw;
     background-color: #A6A6A6;
     display: grid;
-    gap: 4.5%;
+    gap: 1vw;
     grid-template-rows: 5% 12% 12% 12% 12% 10% 1% 5%;
+    place-content: center;
+    grid-template-columns: 1fr;
     justify-items: center;
     
 }

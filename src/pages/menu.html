@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style/styleMenu.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
     <title>LetHimCook - Menu</title>
 </head>
 <body>
-    <main>
-        <aside>
-            <h1>LetHimCook</h1>
-            <nav>
+    <main class="main">
+        <aside class="main__aside">
+            <h1 class="aside--title">LetHimCook</h1>
+            <nav class="aside--nav">
                 <a href="./favorites.html">Mis favoritos</a>
                 <a href="./recipes.html">Mis recetas</a>
                 <a href="./create.html">Publicar receta</a>
             </nav>
-            <button>Cerrar sesion</button>
+            <button class="aside--btnC">Cerrar sesion</button>
         </aside>
-        <section>
-            <article>
+        <section class="main__section">
+            <article class="section--articleProfile">
                 <!--Profile-->
-                <a href="./profile.html">
-                    <img src="" alt="">
-                    <h2>My name</h2>
+                <a href="profile.html" class="articleProfile--linkProfile">
+                    <img src="../assets/img/user.jpg" alt="">
+                    <h2>Agustincitos</h2>
                 </a>
             </article>
-            <article>
+            <article class="section--filterCont">
                 <input type="text" name="filter">
             </article>
-            <hr>
-            <article>
+            <hr class="section--hr">
+            <article class="section--articleRec">
                 <!--Recetas cargadas con php-->
             </article>
         </section>
     </main>
-    <script type="module" src="../assets/script/menu.js"></script>
+    <!-- <script type="module" src="../assets/script/menu.js"></script> -->
 </body>
 </html>

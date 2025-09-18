@@ -36,9 +36,9 @@
     background-color: #A6A6A6;
     border-radius: 1vw;
     display: grid;
-    gap: 5%;
+    gap: 1.2vw;
     grid-template-rows: 5% 20% 20% 15% 1% 1%; 
-    padding: 4%;
+    padding: 2%;
     grid-template-columns: 1fr;
     place-content: center;
 }

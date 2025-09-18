@@ -4,8 +4,9 @@
     font-weight: 500;
 }
 
-
-
+*{
+    font-family: "FuenteStyleII";
+}
 
 body, html, main{
     padding: 0;
