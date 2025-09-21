@@ -13,6 +13,7 @@ async function verify(){
 
 
 async function getRecipes() {
+    const recipeCont = document.getElementById("recipeShow");
     try {
         const response = await fetch("../php/recipes.php",{
             method: "GET",
@@ -25,7 +26,11 @@ async function getRecipes() {
             return data.data;
         }
         else{
-            return data.error;
+            // const error = document.createElement("h2");
+            // error.innerHTML = data.error
+            // error.classList.add("errorRecipe")
+            // recipeCont.appendChild(error)
+            // return data.error;
         }
     } catch (error) {
         return data.error;

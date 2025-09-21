@@ -16,3 +16,15 @@ body, html, main{
     box-sizing: border-box;
     font-family: "FuenteStyleII";
 }
+
+
+.header{
+    padding: 0.5vw;
+}
+.header__img{
+    width: 5vw;
+    background-color: #FFFFFF;
+    border-radius: 100%;
+    padding: 0.4vw;
+    
+}

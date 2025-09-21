@@ -6,7 +6,9 @@
 
 
 .body{
-    padding: 2%;
+    padding: 0.5vw;
+    display: grid;
+    grid-template-rows: 10% auto;
     background-color: #4E4E4E;
 }
 

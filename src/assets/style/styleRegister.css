@@ -6,19 +6,16 @@
 
 
 .body{
-    padding: 2%;
-    background-color: #4E4E4E;
+    padding: 0.5vw;
     display: grid;
-    height: 100%;
-    grid-template-rows: 10% 90%; 
+    grid-template-rows: 20% auto;
+    background-color: #4E4E4E;
 }
 .main{
     font-family: "FuenteStyleII";
     display: grid;
     width: 100%;
-  
     height: 100%;
-    
 }
 
 .main__section{
