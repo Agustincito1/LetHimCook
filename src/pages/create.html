@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/styleCreate.css">
+    <title>LetHimCook - Crear </title>
+</head>
+<body>
+    <header class="header">
+        <a href="./menu.html"><img src="../assets/img/back.png" alt="" class="header__img"></a>
+    </header>
+    <main class="main">
+        <section class="main__section">
+            <article>
+                <h2>Crear nueva receta</h2>
+            </article>
+            <article>
+                <form action="">
+                    <label for="name">
+                        <p>Nombre de la receta</p>
+                        <input type="text" name="name" placeholder="Nombre de la receta">
+                    </label>
+
+                    <label for="Ingredientes">
+                        <p>Ingredientes</p>
+                        <button type="button" class="buttonAdd" id="addIngre">+</button>
+                        <ul id="ingredienteslist">
+                            <li>
+                                <p>1</p>
+                                <input type="text" name="ingrediente" class="ingrediente" placeholder="Ingrediente">
+                                <button type="button" class="deleteLi">🗑️</button>
+                            </li>
+                            
+                            <!-- ingredientes -->
+                        </ul>
+                    </label>
+                    
+                    <label for="descripcion">
+                        <p>Descripcion</p>
+                        <input type="text" name="descripcion" placeholder="Descripcion">
+                    </label>
+
+                    <label for="imagenPrincipal">
+                        <p>Imagen principal</p>
+                        <div>
+                            <input type="file" name="imagenPrincipal" id="imagenPrincipal" placeholder="Add image">
+                            <div>
+                                +
+                            </div>
+                            <div id="previewPrincipal">
+
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="pasos">
+                        <p>Pasos</p>
+                        <button type="button" class="buttonAdd" name="pasos" id="addStep">+</button>
+                        <ul id="steplist">
+                            <li>
+                                <p>1</p>
+                                <input type="text" name="step" class="step" placeholder="Titulo paso">
+                                <textarea name="descripcion" placeholder="descripcion" class="descripcionStep"></textarea>
+                                <input type="file" name="imagenPaso" class="imgPaso" placeholder="Add image">
+                                <div class="previewPaso"></div>
+                                <button type="button" class="deleteLi">🗑️</button>
+                            </li>
+                            <!-- pasos titulo, imagen, imagen -->
+                        </ul>
+                    </label>
+
+                    <button>Crear</button>
+                </form>
+            </article>
+        </section>
+
+    </main>
+    <footer class="footer">
+
+    </footer>
+    <script src="../assets/script/createRecipe.js"></script>
+</body>
+</html>
