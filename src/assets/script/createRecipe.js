@@ -18,9 +18,7 @@ inputImagenPrincipal.addEventListener('change', function(e) {
     reader.onload = function(ev) {
         const img = document.createElement('img');
         img.src = ev.target.result;
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '150px';
-        img.style.borderRadius = '8px';
+        img.classList.add('imgPrincipalPreview');
         previewPrincipal.appendChild(img);
     };
     reader.readAsDataURL(file);
@@ -48,9 +46,7 @@ document.querySelectorAll('#steplist li').forEach(function(li) {
             reader.onload = function(ev) {
                 const img = document.createElement('img');
                 img.src = ev.target.result;
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '120px';
-                img.style.borderRadius = '8px';
+            img.classList.add('imgPrincipalPreview');
                 previewDiv.appendChild(img);
             };
             reader.readAsDataURL(file);
