@@ -58,7 +58,7 @@ document.querySelectorAll('#steplist li').forEach(function(li) {
 
 
 const buttonAddIng = document.querySelector('#addIngre');
-console.log("s")
+
 buttonAddIng.addEventListener('click', function() {
     const list = document.getElementById("ingredienteslist");
     const cantidadIngredientes = list.getElementsByTagName('li').length;
@@ -182,3 +182,119 @@ document.addEventListener('click', function(e) {
 });
 
 
+function verifyForm(errors){
+    const conE = document.getElementById("contenedorErr")
+    conE.innerHTML = ""
+    var contador = 0;
+   
+    conE.style.opacity = 1
+    conE.style.flex = "0.3"
+    setTimeout(()=>{
+        conE.style.opacity = 1
+    }, 200)
+    conE.style.flex = "0.3"
+
+    setTimeout(()=>{
+        conE.style.opacity = 0
+        setTimeout(()=>{
+            conE.style.flex = "0"
+        }, 200)
+        
+        setTimeout(()=>{
+            conE.innerText = ""
+        }, 300)
+    }, 2000)
+    const ul = document.createElement("ul")
+    errors.forEach((value) =>{
+        if(contador === 5){return}
+        const li = document.createElement("li")
+        const p = document.createElement("p")
+        const img = document.createElement("img")
+        img.src = "../assets/img/advertencia.png"
+        img.classList.add("errImg")
+        p.innerText = value
+        li.append(img, p);
+        ul.appendChild(li)
+        contador++
+    })
+
+    conE.appendChild(ul)
+}
+const form = document.getElementById('formCreate');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let errores = [];
+    // Validar nombre de la receta
+    const nombreInputVal = form.querySelector('input[name="name"]');
+    if (!nombreInputVal.value.trim()) {
+        errores.push('El nombre de la receta está vacio.');
+    }
+
+    // Validar ingredientes
+    const ingredientesInputsVal = form.querySelectorAll('#ingredienteslist .ingrediente');
+    ingredientesInputsVal.forEach((input, idx) => {
+        if (!input.value.trim()) {
+            errores.push(`El ingrediente ${idx + 1} está vacío.`);
+        }
+    });
+
+    // Validar descripción
+    const descripcionInputVal = form.querySelector('input[name="descripcion"]');
+    if (!descripcionInputVal.value.trim()) {
+        errores.push('La descripción de la receta está vacio.');
+    }
+
+    // Validar imagen principal
+    const imagenPrincipalInputVal = form.querySelector('input[name="imagenPrincipal"]');
+    if (!imagenPrincipalInputVal.files || !imagenPrincipalInputVal.files[0]) {
+        errores.push('La imagen principal vacio.');
+    }
+
+    // Validar pasos
+    const pasosLisVal = form.querySelectorAll('#steplist li');
+    pasosLisVal.forEach((li, idx) => {
+        const stepInput = li.querySelector('input[name="step"]');
+        const descStep = li.querySelector('textarea[name="descripcion"]');
+        const imgPaso = li.querySelector('input[name="imagenPaso"]');
+        if (!stepInput.value.trim()) {
+            errores.push(`El título del paso ${idx + 1} está vacio.`);
+        }
+        if (!descStep.value.trim()) {
+            errores.push(`La descripción del paso ${idx + 1} está vacio.`);
+        }
+        if (!imgPaso.files || !imgPaso.files[0]) {
+            errores.push(`La imagen del paso ${idx + 1} está vacio.`);
+        }
+    });
+
+    if (errores.length > 0) {
+        verifyForm(errores)
+        return;
+    }   
+
+    // Si todo es válido, enviar el form a createRecipe.php
+    const formData = new FormData(form);
+
+  
+    fetch('../php/createRecipe.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Receta creada correctamente');
+            form.reset();
+            // Opcional: limpiar previews
+            previewPrincipal.innerHTML = '';
+            document.querySelectorAll('.previewPaso').forEach(div => div.innerHTML = '');
+        } else {
+            console.log(data.message)
+            alert('Error al crear la receta: ' + (data.message || 'Error desconocido.'));
+        }
+    })
+    .catch(error => {
+        console.log(error.message)
+        alert('Error en la petición: ' + error);
+    });
+});

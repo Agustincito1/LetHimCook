@@ -10,14 +10,16 @@
 <body>
     <header class="header">
         <a href="./menu.html"><img src="../assets/img/back.png" alt="" class="header__img"></a>
+        <article class="containerTitle">
+            <h2>Crear receta</h2>
+        </article>
     </header>
     <main class="main">
         <section class="main__section">
-            <article class="section__containerTitle">
-                <h2>Crear receta</h2>
-            </article>
             <article class="section__containerForm">
-                <form action="" class="formCreate">
+                <div class="err" id="contenedorErr">
+                </div>
+                <form action="" class="formCreate" id="formCreate" enctype="multipart/form-data">
                     <label for="name" class="nameLabel">
                         <p>Nombre de la receta</p>
                         <input type="text" name="name" placeholder="Nombre de la receta">
