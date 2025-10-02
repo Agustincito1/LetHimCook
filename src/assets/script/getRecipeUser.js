@@ -1,26 +1,15 @@
-import { verifySession } from "./verSession.js";
+async function getR() {
 
-async function verify(){
-    const user = await verifySession();
+    const response = await fetch("../php/getRecipeUser.php",{
+        method: "GET",
+        credentials: "include"
+    })
 
-    if(user === false){
-        window.location.href = "./login.html";
-    }
-}
+    const data = await response.json();
 
-
-async function getRecipes() {
-    const recipeCont = document.getElementById("recipeShow");
     try {
-        const response = await fetch("../php/recipes.php",{
-            method: "GET",
-            credentials: "include"
-        })
-
-        const data = await response.json();
-
         if(data.success){
-            const listRecipes = document.getElementById("recipeCont");
+            const listRecipes = document.getElementById("recipeCreate");
             data.data.forEach(receta => {
                 const li = document.createElement('li');
                 li.className = 'recipe';
@@ -63,17 +52,12 @@ async function getRecipes() {
             return data.data;
         }
         else{
-            console.log(data.error)
-            // const error = document.createElement("h2");
-            // error.innerHTML = data.error
-            // error.classList.add("errorRecipe")
-            // recipeCont.appendChild(error)
-            // return data.error;
+            console.log(data.error);
         }
+
     } catch (error) {
-        return error;
+        console.log(error);
     }
 }
 
-verify()
-const recetas = getRecipes();
+const recetas = getR();
