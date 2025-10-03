@@ -12,6 +12,8 @@ async function getR() {
             const listRecipes = document.getElementById("recipeCreate");
             data.data.forEach(receta => {
                 const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `./recipes.html?id=${receta.id_receta}`;
                 li.className = 'recipe';
 
                 // Parsear imagen principal
@@ -43,10 +45,10 @@ async function getR() {
                 const footer = document.createElement('footer');
                 footer.textContent = receta.nombreUsuario || 'Desconocido';
 
-                li.appendChild(header);
-                li.appendChild(main);
-                li.appendChild(footer);
-
+                a.appendChild(header);
+                a.appendChild(main);
+                a.appendChild(footer);
+                li.appendChild(a);
                 listRecipes.appendChild(li);
             });
             return data.data;

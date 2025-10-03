@@ -23,6 +23,8 @@ async function getRecipes() {
             const listRecipes = document.getElementById("recipeCont");
             data.data.forEach(receta => {
                 const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `./recipes.html?id=${receta.id_receta}`;
                 li.className = 'recipe';
 
                 // Parsear imagen principal
@@ -53,11 +55,11 @@ async function getRecipes() {
                 // Footer con nombre de usuario
                 const footer = document.createElement('footer');
                 footer.textContent = receta.nombreUsuario || 'Desconocido';
-
-                li.appendChild(header);
-                li.appendChild(main);
-                li.appendChild(footer);
-
+                
+                a.appendChild(header);
+                a.appendChild(main);
+                a.appendChild(footer);
+                li.appendChild(a);
                 listRecipes.appendChild(li);
             });
             return data.data;
@@ -75,5 +77,85 @@ async function getRecipes() {
     }
 }
 
+
+
+const formFilt = document.getElementById("formFilter");
+const input = document.getElementById("filter");
+
+
+input.addEventListener("input", async function(e) {
+    // Evitar el envío del formulario, ya que no estamos usando un botón de submit
+    e.preventDefault();
+    
+    const query = input.value.toLowerCase();
+    console.log(query);
+
+    const res = await fetch(`../php/filter.php`, {
+        method: "POST",
+        body: JSON.stringify({ query: query }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    // Manejo de errores
+    if (data.success === false) {
+        const listRecipes = document.getElementById("recipeCont");
+        listRecipes.innerHTML = `<h2 class="errorRecipe">${data.error}</h2>`;
+        return data.error;
+    }
+
+    // Mostrar las recetas
+    const listRecipes = document.getElementById("recipeCont");
+    listRecipes.innerHTML = ""; // Limpiar recetas anteriores
+
+    data.data.forEach(receta => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `./recipes.html?id=${receta.id_receta}`;
+        li.className = 'recipe';
+
+        // Parsear imagen principal
+        let imagenPrincipal = '../assets/img/user.jpg';
+        try {
+            const imagenes = JSON.parse(receta.imagenes);
+            if (imagenes && imagenes.principal) {
+                imagenPrincipal = imagenes.principal.replace('..', '..'); // Ajusta si es necesario
+            }
+        } catch (e) {}
+
+        // Header con imagen principal
+        const header = document.createElement('header');
+        const img = document.createElement('img');
+        img.src = imagenPrincipal;
+        img.alt = '';
+        header.appendChild(img);
+
+        // Main con título y pasos
+        const main = document.createElement('main');
+        const h3 = document.createElement('h3');
+        h3.textContent = receta.titulo || 'Sin título';
+        const p = document.createElement('p');
+        p.textContent = 'En 3 pasos'; // Puedes ajustar si tienes la cantidad real de pasos
+        main.appendChild(h3);
+        main.appendChild(p);
+
+        // Footer con nombre de usuario
+        const footer = document.createElement('footer');
+        footer.textContent = receta.nombreUsuario || 'Desconocido';
+        
+        a.appendChild(header);
+        a.appendChild(main);
+        a.appendChild(footer);
+        li.appendChild(a);
+        listRecipes.appendChild(li);
+    });
+    return data.data;
+});
+
+
+
+
 verify()
+
 const recetas = getRecipes();

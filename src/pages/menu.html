@@ -16,7 +16,7 @@
                 <a href="./recipesCreate.html">Mis recetas</a>
                 <a href="./create.html">Publicar receta</a>
             </nav>
-            <button class="aside--btnC">Cerrar sesion</button>
+            <button class="aside--btnC" id="logOut">Cerrar sesion</button>
         </aside>
         <section class="main__section">
             <article class="section--articleProfile">
@@ -27,7 +27,10 @@
                 </a>
             </article>
             <article class="section--filterCont">
-                <input type="text" name="filter">
+                <form action="" class="filterCont--form" id="formFilter">
+                    <input type="text" name="filter" id="filter" placeholder="Buscar receta...">
+                </form>
+                
             </article>
             <hr class="section--hr">
             <article class="section--articleRec" id="recipeShow">
@@ -39,5 +42,6 @@
         </section>
     </main>
     <script type="module" src="../assets/script/menu.js"></script>
+    <script type="module" src="../assets/script/logout.js"></script>
 </body>
 </html>
