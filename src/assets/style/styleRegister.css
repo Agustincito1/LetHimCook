@@ -6,9 +6,8 @@
 
 
 .body{
-    padding: 0.5vw;
     display: grid;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 10% 90% 15vw;
     background-color: #4E4E4E;
 }
 .main{

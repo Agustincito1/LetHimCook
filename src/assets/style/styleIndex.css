@@ -66,10 +66,49 @@ body{
 
 }
 
+.article__title{    
+    opacity: 0;
+    animation: splashTextFadeIn 1s forwards;
+}
+
+.article__subtitle{
+    animation: splashTextFadeIn 1s forwards;
+}
+
+.article__button{
+    transform: scale(1);
+    animation: splashTextFadeIn 1s forwards;
+}
+
 .article__button:hover{
-    transform: scale(1.1, 1.1);
+   box-shadow: 0 0 2vw #000;
 }
 
 .article__button:active{
     transform: scale(0.9, 0.9);
+}
+
+@keyframes splashTextFadeIn {
+    from{
+        transform: scale(0.9, 0.9);
+        opacity: 0;
+    }
+    to { 
+        transform: scale(1, 1);
+        opacity: 1; 
+    }
+}
+
+@keyframes splashFadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+
+@keyframes vibrateResposive {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
 }
