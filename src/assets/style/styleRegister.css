@@ -7,13 +7,15 @@
 
 .body{
     display: grid;
-    grid-template-rows: 10% 90% 15vw;
+    grid-template-rows: 5% 90% 15vw;
     background-color: #4E4E4E;
+    gap: 10%;
 }
 .main{
     font-family: "FuenteStyleII";
     display: grid;
     width: 100%;
+    gap: 5%;    
     height: 100%;
 }
 
@@ -26,27 +28,24 @@
     grid-template-rows: 100%;
     gap: 1vw;
     justify-content: center;
-    place-items: center;
-    
+    padding-top: 2%;
 }   
 
 .main__section--form{
     
     flex: 1;
-    padding: 2%;
+    padding: 2.5%;
     position: relative;
-    max-width: 500px;
-    max-height: 600px;
-    min-width: 50px;
+    max-height: 60vw;
+    max-width: 40vw;
     box-sizing: border-box;
     width: 60%;
-    
     height: 100%;
     border-radius: 0.5vw;
     background-color: #A6A6A6;
     display: grid;
-    gap: 1vw;
-    grid-template-rows: 5% 12% 12% 12% 12% 10% 1% 5%;
+    gap: 2%;
+    grid-template-rows: 5% 15% 15% 15% 15% 10% 2% 5%;
     place-content: center;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -65,19 +64,19 @@
     top: -4vw;
     text-align: center;
     font-family: "FuenteStyle";
-    font-size: clamp(1rem, 6vw, 4rem);
+    font-size: clamp(0.5rem, 6vw, 25rem);
     font-weight: 100;
 }
-
 .form__hr{
-    border-color: 000000;
-    width: 60%;
-    height: 0.3vw;
+    width: 90%;
+    height: 0.1vw;
+    border: none;
     background-color: #000000;
 }
-
 .label__input{
+    cursor: pointer;
     margin: 0;
+    outline: none;
     box-sizing: border-box;
     background-color: #4E4E4E;
     color: #FFFFFF;
@@ -87,7 +86,12 @@
     width: 100%;
     height: 100%;
     padding: 5%;
+    font-size: clamp(0.2rem, 1vw, 8rem);
+    transition: all 0.2s;
+    z-index: 1;
 }
+
+
 
 .label__input::placeholder{
     color: #FFFFFF;
@@ -102,24 +106,90 @@
     grid-template-rows: 80%;
     place-content: center;
     grid-template-columns: 90%;
+    height: 100%;
 }
 
 .label__title{
     background-color: #FAF3E0;
     position: absolute;
     padding: 0.6vw;
+    z-index: 2;
     margin: 0;
-    top: -1.5vw;
+    top: -15%;
+    left: 0%;
     border-radius: 0.2vw;
+    font-size: clamp(0.3rem, 1vw, 15rem);
+    transition: all 0.2s;
 }
 
+
 .form__button{
-    width: 80%;
+    width: 90%;
     margin: auto;
     height: 100%;
+    display: block;
     border-radius: 0.5vw;
     border: none;
     cursor: pointer;
+    font-size: clamp(0.2rem, 2vw, 8rem);
+    background-color: #FAF3E0;
+    transition: all 0.2s;
+}
+.form__button:hover{
+    transform: scale(1.02);
+    background-color: #333333d2;
+    
+    color: #FFFFFF;
+}
+
+.form__button:active{
+    transform: scale(0.95);
+    background-color: #333333;
+    
+    color: #FFFFFF;
+}
+
+.form__label{
+    transition: all 0.2s;
+}
+
+
+.label__input:hover {
+    transform: scale(1.02);
+    background-color: #333333;
+}
+.label__input:focus{
+    transform: scale(1.02);
+    color: #c6f377;
+    background-color: #333333;
+}
+.form__p{
+    justify-self: center;
+    font-size: clamp(0.2rem, 1.5vw, 8rem);
+    cursor:default;
+}
+
+.form__p a{
+    position: relative;
+    text-decoration: none;
+    color: #e4f8c1;
+    transition: all 0.2s;
+}
+
+.form__p a::after {
+    content: "";
+    top: 100%;
+    left: 0;
+    position: absolute;
+    width: 0%;
+    height: 0.2vw;
+    border-radius: 0.5vw;
+    background-color: #c6f377;
+    transition: all 0.3s ease;
+}
+
+.form__p a:hover::after{
+    width: 100%;
 }
 
 .err{
