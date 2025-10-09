@@ -159,3 +159,41 @@ input.addEventListener("input", async function(e) {
 verify()
 
 const recetas = getRecipes();
+
+
+const arrow = document.getElementById("arrow");
+const mainS = document.getElementById("main-section");
+const mainA = document.getElementById("main-aside");
+const header = document.getElementById("header");
+
+let isChecked = false;
+
+arrow.addEventListener("mouseenter" ,()=>{
+    if(!isChecked){
+        mainA.classList.add("asideLeft");
+        arrow.classList.add("arrow--move");
+        isChecked = true;
+    }
+
+})
+
+mainA.addEventListener("mouseleave" ,()=>{
+
+    if (isChecked) {
+        mainA.classList.add("aside--end")
+        mainA.classList.remove("aside--end")
+        mainA.classList.remove("asideLeft");
+        arrow.classList.remove("arrow--move");
+        isChecked = false;
+    }
+})
+
+arrow.addEventListener("click", () => {
+    if (isChecked) {
+        mainA.classList.add("aside--end")
+        mainA.classList.remove("aside--end")
+        mainA.classList.remove("asideLeft");
+        arrow.classList.remove("arrow--move");
+        isChecked = false;
+    }
+});

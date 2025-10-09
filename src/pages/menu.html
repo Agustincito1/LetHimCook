@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/style/styleMenu.css">
+    
     <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/styleMenu.css">
     <title>LetHimCook - Menu</title>
 </head>
 <body>
-    <main class="main">
-        <aside class="main__aside">
+    <header class="header" id="header">
+        <section class="section--articleProfile">
+            <!--Profile-->
+            <a href="profile.html" class="articleProfile--linkProfile">
+                <img src="../assets/img/user.jpg" alt="">
+                <h2>Agustincitos</h2>
+            </a>
+        </section>
+        <section class="section__titleContainer">
+            <h2>LetHimCook</h2>
+        </section>
+
+    </header>
+    <main class="main" >
+        <div class="arrow--cont" id="arrow">
+            <img class="arrow" src="../assets/img/arrow.png" alt="">
+        </div>
+        <aside class="main__aside" id="main-aside">
             <h1 class="aside--title">LetHimCook</h1>
             <nav class="aside--nav">
                 <a href="./favorites.html">Mis favoritos</a>
@@ -18,14 +35,8 @@
             </nav>
             <button class="aside--btnC" id="logOut">Cerrar sesion</button>
         </aside>
-        <section class="main__section">
-            <article class="section--articleProfile">
-                <!--Profile-->
-                <a href="profile.html" class="articleProfile--linkProfile">
-                    <img src="../assets/img/user.jpg" alt="">
-                    <h2>Agustincitos</h2>
-                </a>
-            </article>
+        <section class="main__section" id="main-section">
+           
             <article class="section--filterCont">
                 <form action="" class="filterCont--form" id="formFilter">
                     <input type="text" name="filter" id="filter" placeholder="Buscar receta...">
