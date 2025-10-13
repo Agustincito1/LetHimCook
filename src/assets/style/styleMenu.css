@@ -14,7 +14,8 @@ body{
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 10% 85%;
+    color: #FAF3E0;
 }
 .header{
     display: grid;
@@ -28,10 +29,11 @@ body{
 }
 
 .section__titleContainer h2{
-    color: #fff;
+    color: #FAF3E0;
     background-color: #78806C;
     padding: 2%;
     border-radius: 0.8vw;
+    box-shadow: 0 0 0.5vw #FAF3E0;
 }
 
 .section--articleProfile img{
@@ -60,6 +62,7 @@ body{
     transition: all 0.4s;
     width: 30%;
     z-index: 120;
+
 }
 
 .asideLeft{
@@ -75,7 +78,7 @@ body{
 
 .aside--title{
     font-family: "FuenteStyle";
-    font-size: clamp(1rem, 5vw, 6rem);
+    font-size: clamp(0.2rem, 5vw, 16rem);
     background-color: #A3B18A;
     padding: 2%;
     box-sizing: border-box;
@@ -83,14 +86,13 @@ body{
     display: grid;
     place-items: center;
     font-weight: 100;
-    color: #FFFFFF;
+    color: #FAF3E0;
 }
 
 .aside--nav{
     display: grid;
     padding: 5%;
-    min-width: 200px;
-    font-size: clamp(1rem, 2vw, 3rem);
+    font-size: clamp(0.2rem, 2vw, 10rem);
     justify-items: center;
 }
 .aside--nav a{
@@ -98,7 +100,8 @@ body{
     height: fit-content;
     width: fit-content;
     transition: all 0.3s;
-    color: #FFFFFF;
+    color: #FAF3E0;
+
 }
 
 .aside--nav a:hover{
@@ -108,13 +111,13 @@ body{
 .aside--btnC{
     transition: all 0.3s;
     background-color: #4E4E4E;
-    color: #fff;
+    color: #FAF3E0;
     border: none;
     width: 80%;
     height: 80%;
     justify-self: center;
     border-radius: 0.2vw;
-    font-size: clamp(1rem, 1.5vw, 2rem);
+    font-size: clamp(0.2rem, 1.5vw, 8rem);
     cursor: pointer;
 }
 
@@ -126,10 +129,10 @@ body{
     padding: 2%;
     display: grid;
     box-sizing: border-box;
-    grid-template-rows: 18% 4% 75%;
+    grid-template-rows: 6vw auto 80%;
     place-content: center;
     justify-content: center;
-    gap: 2%;
+    gap: 1%;
     grid-template-columns: 80%;
 }
 
@@ -151,7 +154,7 @@ body{
 .arrow--cont{
     position:fixed;
     top: 40%;
-    background-color: #fff;
+    background-color: #FAF3E0;
     width: 50%;
     height: 4vw;
     left: -48%;
@@ -181,18 +184,19 @@ body{
     text-overflow: ellipsis; 
     overflow: hidden;
     height: fit-content;
-    color: #fff;
-    font-size: clamp(1rem ,2vw, 5rem);
+    color: #FAF3E0;
+    font-size: clamp(0.1rem ,2vw, 5rem);
     
 }
 
 .section--filterCont{
-    display: grid;
+    display: flex;
     width: 100%;
     height: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
     padding: 1%;
+    gap: 2%;
     box-sizing: border-box;
     justify-content: center;
 }
@@ -221,6 +225,8 @@ body{
 }
 .section--hr{
     border: none;
+    height: 0.2vw;
+    border-radius: 2vw;
     transform: rotate(180deg); 
     width: 100%;
     background-color: #A3B18A;
@@ -238,36 +244,102 @@ body{
 .errorRecipe{ 
     color: #c3d4a5;
     text-align: center;
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(0.2rem, 4vw, 3rem);
 }
 
 .recipeContainer{
     height: 100%;
-    padding-right: 2%;
-    margin: 0;
-    display: grid;
-    gap: 2vw;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: 1fr;
-   
+    width: 95%;
+    padding: 1.5%;
+    margin: auto;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: left;
+    flex-wrap: wrap; 
+    gap: 1%;
 }
 .recipe {
-    border-radius: 0.5vw;
+    list-style: none;
+    border-radius: 0.2vw;
     background-color: #6D765D;
-    width: 100%;
+    flex: calc(20.333% - 1%);
+    padding: 0.5%;
     height: 100%;
-    min-height: 250px;
-    max-height: 300px;
+    width: 100%;
+    max-width: 20vw;
+    box-sizing: border-box;
+    max-height: 20vw;
+    transition: all 0.3s ease
+}
+.recipe:hover{
+    transform: scale(1.05, 1.05) translateY(-0.5vw);
+ 
+    background-color: #000000bd;
+    
+}
+
+.recipe a{
+    height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    place-items: center;
-    text-align: center;
-    padding: 2%;
+    grid-template-rows: 60% 30% 10%;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 .recipe header{
+    margin: 0;
+    width: 100%;
+    padding: 0.5%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #FAF3E0;
+    border-radius: 0.2vw;
+}
+.recipe header img{
+    border-radius: 0.2vw;
     width: 100%;
     height: 100%;
 }
-.recipe header img{
-    width: 50%;
+.recipe main{
+    height: 100%;
+    display: grid;
+    padding: 1%;
+    text-align: center;
+    grid-template-rows: 40% 60%;
+}
+.recipe main h3{
+    display: grid;
+    place-items: center;
+    font-size: clamp(0.2rem, 2vw, 7rem);
+    color: #FAF3E0;
+    margin: 0;
+}
+
+.recipe main p{
+    display: grid;
+    text-align: left;
+    padding: 1%;
+    line-height: 1.6;
+    font-size: clamp(0.2rem, 1.2vw, 7rem);
+    color: #FAF3E0;
+    margin: 0;
+}
+
+.recipe footer{
+    display: grid;
+    place-items: end;
+    justify-content: start;
+    pad: 2%;
+    color: #c3d4a5;
+    font-family: 'FuenteStyle';
+    font-size: clamp(0.2rem, 1.5vw, 7rem);
+}
+
+
+@keyframes vaiven {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(0.05vw); } /* sube 5px */
+  100% { transform: translateY(0); }
 }
