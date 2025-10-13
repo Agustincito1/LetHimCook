@@ -37,7 +37,7 @@ async function getR() {
                 const h3 = document.createElement('h3');
                 h3.textContent = receta.titulo || 'Sin título';
                 const p = document.createElement('p');
-                p.textContent = 'En 3 pasos'; // Puedes ajustar si tienes la cantidad real de pasos
+                p.textContent = receta.descripcion; // Puedes ajustar si tienes la cantidad real de pasos
                 main.appendChild(h3);
                 main.appendChild(p);
 

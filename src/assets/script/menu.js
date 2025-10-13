@@ -8,6 +8,29 @@ async function verify(){
     }
 }
 
+const menu = document.getElementById("nameUser");
+async function getData(){
+    try {
+        const response = await fetch("../php/getDataUser.php", {
+            method: "GET",
+            credentials: "include"
+        })
+
+        const data = await response.json();
+        if(data.success){
+            menu.textContent = data.data[0].nombreUsuario;
+        }
+        else{
+            return false
+        }
+
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+}
+getData();
+
 
 async function getRecipes() {
     const recipeCont = document.getElementById("recipeShow");
