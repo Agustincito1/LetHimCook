@@ -100,7 +100,7 @@ buttonAddstep.addEventListener('click', function() {
     input.name = 'step';
 
     const textarea = document.createElement('textarea');
-    textarea.name = 'descripcion';
+    textarea.name = 'descripcionS';
     textarea.placeholder = 'descripcion';
 
     const inputFile = document.createElement('input');
@@ -223,13 +223,16 @@ function verifyForm(errors){
 const form = document.getElementById('formCreate');
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+
+   
+
     let errores = [];
     // Validar nombre de la receta
     const nombreInputVal = form.querySelector('input[name="name"]');
     if (!nombreInputVal.value.trim()) {
         errores.push('El nombre de la receta está vacio.');
     }
-
+     
     // Validar ingredientes
     const ingredientesInputsVal = form.querySelectorAll('#ingredienteslist .ingrediente');
     ingredientesInputsVal.forEach((input, idx) => {
@@ -239,7 +242,7 @@ form.addEventListener('submit', function(e) {
     });
 
     // Validar descripción
-    const descripcionInputVal = form.querySelector('input[name="descripcion"]');
+    const descripcionInputVal = form.querySelector('input[name="recetaDescription"]');
     if (!descripcionInputVal.value.trim()) {
         errores.push('La descripción de la receta está vacio.');
     }
@@ -254,7 +257,7 @@ form.addEventListener('submit', function(e) {
     const pasosLisVal = form.querySelectorAll('#steplist li');
     pasosLisVal.forEach((li, idx) => {
         const stepInput = li.querySelector('input[name="step"]');
-        const descStep = li.querySelector('textarea[name="descripcion"]');
+        const descStep = li.querySelector('textarea[name="descripcionS"]');
         const imgPaso = li.querySelector('input[name="imagenPaso"]');
         if (!stepInput.value.trim()) {
             errores.push(`El título del paso ${idx + 1} está vacio.`);
@@ -271,14 +274,80 @@ form.addEventListener('submit', function(e) {
         verifyForm(errores)
         return;
     }   
-
-    // Si todo es válido, enviar el form a createRecipe.php
     const formData = new FormData(form);
+    const ingredientes = [];
+    const pasos = [];
+    let nameR = "";
+    let descrip = "";
+    let imgPri = "";
 
-  
+    // Recorremos todos los campos
+
+    for (let [name, value] of formData) {
+        if (name.startsWith("name")){
+            nameR = value
+        }
+        if (name.startsWith("imagenPrincipal")){
+            imgPri = value
+        }
+        if (name.startsWith("recetaDescription")){
+            descrip = value
+        }
+        if (name.startsWith("ingrediente")) {
+            ingredientes.push(value);
+        }
+
+        else if (name.startsWith("step")) {
+            pasos.push({ step: value }); 
+        }
+    }
+
+    // Ahora añadimos las descripciones e imágenes a cada paso según el orden de aparición
+    let descIndex = 0;
+    for (let [name, value] of formData) {
+        if (name.startsWith("descripcionS")) {
+            if (pasos[descIndex]) {
+                pasos[descIndex].descripcion = value;
+                descIndex++;
+            }
+        }
+    }
+
+    // let imgIndex = 0;
+    // for (let [name, value] of formData) {
+    //     if (name.startsWith("imagenPaso")) {
+    //         if (pasos[imgIndex]) {
+    //             pasos[imgIndex].imagen = value;
+    //             imgIndex++;
+    //         }
+    //     }
+    // }
+
+    const finalFormData = new FormData();
+
+    // Agregar campos simples
+    finalFormData.append('name', nameR);
+    finalFormData.append('descripcion', descrip);
+    finalFormData.append('ingredientes', JSON.stringify(ingredientes));
+    finalFormData.append('pasos', JSON.stringify(pasos));
+    // Imagen principal
+    const imagenPrincipal = form.querySelector('input[name="imagenPrincipal"]');
+    if (imagenPrincipal.files[0]) {
+        finalFormData.append('imgPrin', imagenPrincipal.files[0]);
+    }
+
+    // Imágenes de los pasos
+    const pasosLis = form.querySelectorAll('#steplist li');
+    pasosLis.forEach((li, idx) => {
+        const imgPasoInput = li.querySelector('input[name="imagenPaso"]');
+        if (imgPasoInput && imgPasoInput.files[0]) {
+            finalFormData.append(`imagen_paso_${idx}`, imgPasoInput.files[0]);
+        }
+    });
+    
     fetch('../php/createRecipe.php', {
         method: 'POST',
-        body: formData
+        body: finalFormData,
     })
     .then(response => response.json())
     .then(data => {
