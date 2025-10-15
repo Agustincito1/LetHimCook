@@ -39,7 +39,16 @@
            
             <article class="section--filterCont">
                 <form action="" class="filterCont--form" id="formFilter">
-                    <input type="text" name="filter" id="filter" placeholder="Buscar receta...">
+                    <label for="ingredientesCont" class="ingredientesCont">
+                        <input type="text" name="ingredientes" id="ingredientes" placeholder="Ingrediente">
+                        <button type="submit" id="btnAddIng">+</button>
+                    </label>
+                    <div  class="ingredienteContainer" id="ingredienteContainer">
+                        <span></span>
+                        <ul id="ingredientesList">
+
+                        </ul>
+                    </div>
                 </form>
                 <form action="" class="filterCont--form" id="formFilter">
                     <input type="text" name="filter" id="filter" placeholder="Buscar receta...">

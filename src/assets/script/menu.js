@@ -242,3 +242,36 @@ arrow.addEventListener("click", () => {
         isChecked = false;
     }
 });
+
+
+
+//filter cont
+const formF = document.getElementById("formFilter");
+const inputIng = document.getElementById("ingredientes");
+const listIng = document.getElementById("ingredienteContainer");
+listIng.style.display = "none";
+const ulList = document.getElementById("ingredientesList");
+const btnAdd = document.getElementById("btnAddIng");
+
+
+formF.addEventListener("submit" ,(e)=>{
+    e.preventDefault()
+    if(inputIng.value !== ""){
+        const p = document.createElement("p");
+        p.textContent = inputIng.value;
+        inputIng.value = "";
+        ulList.appendChild(p)
+    }
+
+})
+
+inputIng.addEventListener("mouseenter" ,()=>{
+    listIng.style.display = "grid";
+
+})
+
+
+listIng.addEventListener("mouseleave" ,()=>{
+
+    listIng.style.display = "none";
+})
