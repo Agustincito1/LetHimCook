@@ -102,6 +102,28 @@ async function getRecipes() {
 
 
 
+
+const formRuleta = document.getElementById("formRuleta");
+
+formRuleta.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const res = await fetch(`../php/randomRecipe.php`, {
+        method: "GET",
+        credentials: "include"
+    });
+    const data = await res.json();
+
+    try {
+        if(data.success){
+            window.location.href = `recipes.html?id=${data.data[0].id_receta}`;
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+
+})
+
 const formFilt = document.getElementById("formFilter");
 const input = document.getElementById("filter");
 

@@ -216,6 +216,20 @@ body{
     outline: none;
 }
 
+.ruleta--form{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    padding: 1%;
+    gap: 2%;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+
+
 .section--filterCont input::placeholder{
     color: #FFFFFF;
 }
