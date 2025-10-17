@@ -1,3 +1,17 @@
+async function delfav(id) {
+    try {
+        const res = await fetch(`../php/delFav.php`, {
+            method: "POST",
+            body: JSON.stringify({ id: id }),
+        });
+        const data = await res.json();
+        return data.success;        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 async function getF() {
 
     const response = await fetch("../php/getRecipeFav.php",{
@@ -25,7 +39,7 @@ async function getF() {
                         imagenPrincipal = imagenes.principal.replace('..', '..'); // Ajusta si es necesario
                     }
                 } catch (e) {}
-
+                
                 // Header con imagen principal
                 const header = document.createElement('header');
                 const img = document.createElement('img');
@@ -34,6 +48,7 @@ async function getF() {
                 header.appendChild(img);
 
                 // Main con título y pasos
+                const footer = document.createElement('footer');
                 const main = document.createElement('main');
                 const h3 = document.createElement('h3');
                 h3.textContent = receta.titulo || 'Sin título';
@@ -43,8 +58,21 @@ async function getF() {
                 main.appendChild(p);
 
                 // Footer con nombre de usuario
-                const footer = document.createElement('footer');
+                const buttonCont = document.createElement('div');
+                const imgBut = document.createElement("img");
+                buttonCont.id = 'delFav';
+                imgBut.src = "../assets/img/borrar.png";
+                buttonCont.addEventListener("click", (e)=>{
+                    e.preventDefault()
+                    if(delfav(receta.id_receta)){
+                        location.reload();
+                    }
+                });
                 footer.textContent = receta.nombreUsuario || 'Desconocido';
+                buttonCont.appendChild(imgBut);
+                footer.appendChild(buttonCont);
+
+               
 
                 a.appendChild(header);
                 a.appendChild(main);

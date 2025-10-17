@@ -1,3 +1,18 @@
+async function delAdd(id) {
+    try {
+        const res = await fetch(`../php/delAdd.php`, {
+            method: "POST",
+            body: JSON.stringify({ id: id }),
+        });
+        const data = await res.json();
+        return data.success;        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 async function getR() {
 
     const response = await fetch("../php/getRecipeUser.php",{
@@ -41,9 +56,38 @@ async function getR() {
                 main.appendChild(h3);
                 main.appendChild(p);
 
+
+
                 // Footer con nombre de usuario
                 const footer = document.createElement('footer');
+
+                const buttonContE = document.createElement('div');
+                const imgButE = document.createElement("img");
+                buttonContE.id = 'modAdd';
+                imgButE.src = "../assets/img/pencil.png";
+                buttonContE.addEventListener("click", (e)=>{
+                    e.preventDefault()
+                    window.location.href = `./updateRecipe.html?id=${receta.id_receta}`;
+                });
+              
+
+                const buttonCont = document.createElement('div');
+                const imgBut = document.createElement("img");
+                buttonCont.id = 'delFav';
+                imgBut.src = "../assets/img/borrar.png";
+                buttonCont.addEventListener("click", (e)=>{
+                    e.preventDefault()
+                    if(delAdd(receta.id_receta)){
+                        location.reload();
+                    }
+                });
                 footer.textContent = receta.nombreUsuario || 'Desconocido';
+
+                buttonCont.appendChild(imgBut);
+                buttonContE.appendChild(imgButE);
+                
+                footer.appendChild(buttonContE);
+                footer.appendChild(buttonCont);
 
                 a.appendChild(header);
                 a.appendChild(main);

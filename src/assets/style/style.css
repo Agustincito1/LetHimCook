@@ -255,6 +255,7 @@ body, html, main{
 .recipe footer{
     display: grid;
     place-items: end;
+    position: relative;
     justify-content: start;
     pad: 2%;
     color: #c3d4a5;
@@ -280,4 +281,8 @@ body, html, main{
 }
 .recipe footer div:hover{
     transform: scale(1.1,1.1);
+}
+
+#modAdd{
+    left: 80%;
 }

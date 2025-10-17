@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/styleCreate.css">
+    <link rel="shortcut icon" href="../assets/img/iconLHC.png" type="image/x-icon">
+    <title>LetHimCook - Crear </title>
+</head>
+<body>
+    <header class="header">
+        <a href="./menu.html"><img src="../assets/img/back.png" alt="" class="header__img"></a>
+        <article class="containerTitle">
+            <h2>Crear receta</h2>
+        </article>
+    </header>
+    <main class="main">
+        <section class="main__section">
+            <article class="section__containerForm">
+                <div class="err" id="contenedorErr">
+                </div>
+                <form action="" class="formCreate" id="formCreate" enctype="multipart/form-data">
+                    <label for="name" class="nameLabel">
+                        <p>Nombre de la receta</p>
+                        <input type="text" name="name" placeholder="Nombre de la receta">
+                    </label>
+
+                    <label for="Ingredientes" class="ingLabel">
+                        <p class="ingredienteT">Ingredientes</p>
+                        <button type="button" class="buttonAdd" id="addIngre">+</button>
+                        <ul id="ingredienteslist">
+                            <li>
+                                <p>1</p>
+                                <input type="text" name="ingrediente" class="ingrediente" placeholder="Ingrediente">
+                                <button type="button" class="deleteLi">🗑️</button>
+                            </li>
+                            
+                            <!-- ingredientes -->
+                        </ul>
+                    </label>
+                    
+                    <label for="descripcion" class="descripcionLabel">
+                        <p>Descripcion</p>
+                        <input type="text" name="recetaDescription" class="descripcionInput" placeholder="Descripcion">
+                    </label>
+
+                    <label for="imagenPrincipal" class="imgPrincipalLabel">
+                        <p>Imagen principal</p>
+                        <div class="imgPrincipalContainer">
+                            <div class="imgPrincipalContainer__text">
+                                Add Image
+                                <div>
+                                    +
+                                </div>
+                            </div>
+                            <input type="file" name="imagenPrincipal" id="imagenPrincipal" placeholder="Add image">
+                            <div id="previewPrincipal">
+
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="pasos" class="steps">
+                        <p class="steps__title">Pasos</p>
+                        <button type="button" class="button_step" name="pasos" id="addStep">+</button>
+                        <ul id="steplist" class="steps__list">
+                            <li>
+                                <p>1</p>
+                                <input type="text" name="step" class="step" placeholder="Titulo paso">
+                                <textarea name="descripcionS" placeholder="descripcion" class="descripcionStep"></textarea>
+                                
+                                <input type="file" name="imagenPaso" class="imgPaso" placeholder="Add image">
+                                
+                                <div class="previewPaso"></div>
+                                <button type="button" class="deleteLi">🗑️</button>
+                            </li>
+                            <!-- pasos titulo, imagen, imagen -->
+                        </ul>
+                    </label>
+
+                    <button class="btnCreate">Crear receta</button>
+                </form>
+            </article>
+        </section>
+
+    </main>
+    <footer class="footer">
+
+    </footer>
+    <script src="../assets/script/updateRecipe.js"></script>
+    <script src="../assets/script/verSession.js"></script>
+</body>
+</html>
