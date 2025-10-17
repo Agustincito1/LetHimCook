@@ -6,7 +6,20 @@
 
     try{
         
-        $query = $pdo->prepare("SELECT titulo, id_receta, imagenes, descripcion, nombreUsuario FROM receta, usuario WHERE ? = receta.id_usuario and usuario.id_usuario = receta.id_usuario");
+        $query = $pdo->prepare("SELECT 
+            titulo, 
+            id_receta, 
+            imagenes, 
+            descripcion, 
+            nombreUsuario 
+        FROM 
+            receta, 
+            usuario 
+        WHERE 
+            ? = receta.id_usuario 
+        AND 
+            usuario.id_usuario = receta.id_usuario");
+            
         $query->execute([$user]);
         $table = $query->fetchAll(PDO::FETCH_ASSOC);
 

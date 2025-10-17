@@ -9,7 +9,14 @@
     $password = $data["password"] ?? "";
 
 
-    $stmt = $pdo->prepare("SELECT id_usuario, contraseña FROM usuario WHERE gmail = ?");
+    $stmt = $pdo->prepare("SELECT 
+        id_usuario, 
+        contraseña 
+    FROM 
+        usuario 
+    WHERE 
+        gmail = ?");
+    
     $stmt->execute([$gmail]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 

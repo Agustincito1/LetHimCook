@@ -1,12 +1,3 @@
-import { verifySession } from "./verSession.js";
-
-async function verify(){
-    const user = await verifySession();
-
-    if(user === false){
-        window.location.href = "./login.html";
-    }
-}
 
 const menu = document.getElementById("nameUser");
 async function getData(){
@@ -19,6 +10,8 @@ async function getData(){
         const data = await response.json();
         if(data.success){
             menu.textContent = data.data[0].nombreUsuario;
+            const id = data.data[0].id_usuario;
+            const recetas = getRecipes(id);
         }
         else{
             return false
@@ -32,7 +25,28 @@ async function getData(){
 getData();
 
 
-async function getRecipes() {
+async function addFav(receta_id){
+    try{
+        const res = await fetch(`../php/addFav.php`, {
+            method: "POST",
+            body: JSON.stringify({ id: receta_id }),
+        });
+        
+        const data = await res.json();
+        console.log(data)
+        if(data.success){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+
+async function getRecipes(id) {
     const recipeCont = document.getElementById("recipeShow");
     try {
         const response = await fetch("../php/recipes.php",{
@@ -49,7 +63,8 @@ async function getRecipes() {
                 const a = document.createElement('a');
                 a.href = `./recipes.html?id=${receta.id_receta}`;
                 li.className = 'recipe';
-
+               
+           
                 // Parsear imagen principal
                 let imagenPrincipal = '../assets/img/user.jpg';
                 try {
@@ -78,7 +93,32 @@ async function getRecipes() {
                 // Footer con nombre de usuario
                 const footer = document.createElement('footer');
                 footer.textContent = receta.nombreUsuario || 'Desconocido';
-                
+
+                if (id !== receta.id_usuario){
+                    const buttonCont = document.createElement('div');
+                    const imgBut = document.createElement("img")
+                    buttonCont.id = 'buttonAddFav';
+                    
+                    
+                    if(receta.recetaxusuario){
+                        imgBut.src = "../assets/img/oki.png";
+                        
+                    }
+                    else{ 
+                        imgBut.src = "../assets/img/plus.png";
+                        buttonCont.addEventListener("click", (e)=>{
+                            e.preventDefault()
+                            if(addFav(receta.id_receta)){
+                                imgBut.src = "../assets/img/oki.png";
+                            }
+                            else{
+                                imgBut.src = "../assets/img/plus.png";
+                            }
+                        });
+                    }
+                    buttonCont.appendChild(imgBut);
+                    footer.appendChild(buttonCont)
+                }
                 a.appendChild(header);
                 a.appendChild(main);
                 a.appendChild(footer);
@@ -172,6 +212,7 @@ input.addEventListener("input", async function(e) {
         // Header con imagen principal
         const header = document.createElement('header');
         const img = document.createElement('img');
+
         img.src = imagenPrincipal;
         img.alt = '';
         header.appendChild(img);
@@ -187,8 +228,7 @@ input.addEventListener("input", async function(e) {
 
         // Footer con nombre de usuario
         const footer = document.createElement('footer');
-        footer.textContent = receta.nombreUsuario || 'Desconocido';
-        
+        footer.textContent = receta.nombreUsuario || 'Desconocido';       
         a.appendChild(header);
         a.appendChild(main);
         a.appendChild(footer);
@@ -197,13 +237,6 @@ input.addEventListener("input", async function(e) {
     });
     return data.data;
 });
-
-
-
-
-verify()
-
-const recetas = getRecipes();
 
 
 const arrow = document.getElementById("arrow");

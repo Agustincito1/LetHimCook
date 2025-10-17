@@ -5,7 +5,16 @@
     $user = $_SESSION["user_id"];
 
     try {
-        $query = $pdo->prepare("SELECT nombreUsuario, contraseña, gmail FROM usuario WHERE id_usuario = ?");
+        $query = $pdo->prepare("SELECT 
+            nombreUsuario, 
+            contraseña, 
+            gmail, 
+            id_usuario 
+        FROM 
+            usuario 
+        WHERE 
+            id_usuario = ?");
+
         $query->execute([$user]);
         $usuario = $query->fetchAll(PDO::FETCH_ASSOC);
 

@@ -69,7 +69,10 @@
     ]);
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO receta (id_usuario, titulo, pasos, descripcion, imagenes, ingredientes) VALUES (?, ?, ?, ?, ?,?)");
+        $stmt = $pdo->prepare("INSERT INTO 
+            receta (id_usuario, titulo, pasos, descripcion, imagenes, ingredientes) 
+            VALUES (?, ?, ?, ?, ?,?)");
+
         $stmt->execute([$id_usuario, $name, $pasoAndDescriptionJson, $descripcion, $imagenesJson, $ingredientesJson]);
         echo json_encode(['success' => true, 'message' => 'Receta creada correctamente']);
     } catch (Exception $e) {

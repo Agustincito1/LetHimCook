@@ -19,7 +19,12 @@
     }
 
     // Verificar si el nombre de usuario ya existe
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE gmail = ?");
+    $stmt = $pdo->prepare("SELECT 
+        COUNT(*) 
+    FROM
+        usuario 
+    WHERE gmail = ?");
+    
     $stmt->execute([$gmail]);
     $existe = $stmt->fetchColumn();
 
@@ -33,7 +38,10 @@
 
     // Insertar nuevo usuario
     try {
-        $stmt = $pdo->prepare("INSERT INTO usuario (nombreUsuario, contraseña, gmail, id_tipoUsuario) VALUES (?, ?, ?, 1)");
+        $stmt = $pdo->prepare("INSERT INTO 
+            usuario (nombreUsuario, contraseña, gmail, id_tipoUsuario) 
+        VALUES (?, ?, ?, 1)");
+        
         $stmt->execute([$name, $password, $gmail]);
 
         echo json_encode([

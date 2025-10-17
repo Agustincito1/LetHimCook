@@ -1,44 +1,33 @@
 <?php
     header("Content-Type: application/json");
     include 'conexion.php';
-
+    session_start();
+    $user = $_SESSION["user_id"];
     // filter.php
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         echo json_encode(['success' => false, 'message' => 'Método no permitido']);
         exit;
     }
+
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (isset($data['query'])) {
-        $name = $data['query'];
+    if (isset($data['id'])) {
+        $id = $data['id'];
     } else {
-        echo json_encode(['success' => false, 'message' => 'Falta el parámetro de búsqueda']);
+        echo json_encode(['success' => false, 'message' => 'Falta el parámetros']);
         exit;
     }
 
     try{
-        $query = $pdo->prepare("SELECT 
-                titulo, 
-                id_receta, 
-                nombreUsuario, 
-                imagenes, 
-                descripcion 
-            FROM 
-                receta 
-            INNER JOIN 
-                usuario 
-            ON receta.id_usuario = usuario.id_usuario
-            WHERE 
-                titulo LIKE CONCAT('%', ?, '%')
-        ");
-        
-        $query->execute([$name]);
-        $table = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $pdo->prepare("INSERT INTO 
+            `recetaguardada` (`id_usuario`, `id_receta`) 
+            VALUES (?,?)");
+            
+        $query->execute([$user, $id]);
 
-        if($table && count($table) > 0){
+        if($query){
             echo json_encode([
                 "success" => true,
-                "data" => $table
             ]);
         }
         else{

@@ -1,4 +1,4 @@
-export async function verifySession(){
+async function verifySession(){
     try {
         const response = await fetch("../php/session.php", {
             method: "GET",
@@ -10,7 +10,8 @@ export async function verifySession(){
             return data.dataUser
         }
         else{
-            return false
+
+            window.location.href = "./sessionAbort.html";
         }
 
     } catch (error) {
@@ -19,5 +20,4 @@ export async function verifySession(){
     }
 }
 
-
-
+verifySession();

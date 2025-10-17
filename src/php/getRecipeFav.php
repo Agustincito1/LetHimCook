@@ -5,7 +5,22 @@
     $user = $_SESSION["user_id"];
 
     try{
-        $query = $pdo->prepare("SELECT titulo, receta.id_receta, imagenes, descripcion FROM recetaguardada, receta WHERE ? = recetaguardada.id_usuario AND recetaguardada.id_receta = receta.id_receta");
+        $query = $pdo->prepare("SELECT 
+                titulo, 
+                receta.id_receta, 
+                imagenes, descripcion, 
+                usuario.nombreUsuario 
+            FROM 
+                recetaguardada, 
+                receta, 
+                usuario 
+            WHERE 
+                ? = recetaguardada.id_usuario 
+                AND 
+                recetaguardada.id_receta = receta.id_receta 
+                AND 
+                usuario.id_usuario = receta.id_usuario");
+                
         $query->execute([$user]);
         $table = $query->fetchAll(PDO::FETCH_ASSOC);
 

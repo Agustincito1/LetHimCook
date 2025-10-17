@@ -9,11 +9,12 @@ async function getF() {
 
     try {
         if(data.success){
-            const listRecipes = document.getElementById("recipeCreate");
+            const listRecipes = document.getElementById("recipeFav");
             data.data.forEach(receta => {
                 const li = document.createElement('li');
+                
                 const a = document.createElement('a');
-                a.href = `./recipe.html?id=${receta.id_receta}`;
+                a.href = `./recipes.html?id=${receta.id_receta}`;
                 li.className = 'recipe';
 
                 // Parsear imagen principal

@@ -4,7 +4,12 @@
     include "conexion.php";
 
     try {
-        $query = $pdo->prepare("SELECT id_receta FROM receta ORDER BY RAND() LIMIT 1");
+        $query = $pdo->prepare("SELECT 
+            id_receta 
+        FROM 
+            receta 
+        ORDER BY RAND() LIMIT 1");
+
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
