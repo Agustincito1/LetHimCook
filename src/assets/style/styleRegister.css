@@ -35,6 +35,7 @@
     
     flex: 1;
     padding: 2.5%;
+    padding-top: 4.5%;
     position: relative;
     max-height: 60vw;
     max-width: 40vw;
@@ -192,14 +193,14 @@
     width: 100%;
 }
 
+
 .err{
     transition: all 0.4s;
     display: grid;
     height: 20vw;
     width: fit-content;
-    flex: 0;
     opacity: 0;
-    
+    flex: 0;
 }
 .err ul li{
     list-style: none;
@@ -233,11 +234,12 @@
     height: 3vw;
 }
 .success{
-
+    z-index: 100;
     background-color: rgba(13, 241, 13, 0.87);
     color: rgb(0, 0, 0);
-    font-size: clamp(1rem, 2vw, 3rem);
+    font-size: clamp(0.5rem, 2vw, 10rem);
     border-radius: 0.5vw;
+    top: 40%;
     position: absolute;
     display: none;
     opacity: 0;
