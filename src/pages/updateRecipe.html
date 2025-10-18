@@ -23,18 +23,14 @@
                 <form action="" class="formCreate" id="formCreate" enctype="multipart/form-data">
                     <label for="name" class="nameLabel">
                         <p>Nombre de la receta</p>
-                        <input type="text" name="name" placeholder="Nombre de la receta">
+                        <input type="text" name="name" id="recetaTitle" placeholder="Nombre de la receta">
                     </label>
 
                     <label for="Ingredientes" class="ingLabel">
                         <p class="ingredienteT">Ingredientes</p>
                         <button type="button" class="buttonAdd" id="addIngre">+</button>
                         <ul id="ingredienteslist">
-                            <li>
-                                <p>1</p>
-                                <input type="text" name="ingrediente" class="ingrediente" placeholder="Ingrediente">
-                                <button type="button" class="deleteLi">🗑️</button>
-                            </li>
+                          
                             
                             <!-- ingredientes -->
                         </ul>
@@ -42,7 +38,7 @@
                     
                     <label for="descripcion" class="descripcionLabel">
                         <p>Descripcion</p>
-                        <input type="text" name="recetaDescription" class="descripcionInput" placeholder="Descripcion">
+                        <input type="text" name="recetaDescription" class="descripcionInput" id="descripcion" placeholder="Descripcion">
                     </label>
 
                     <label for="imagenPrincipal" class="imgPrincipalLabel">
@@ -65,16 +61,6 @@
                         <p class="steps__title">Pasos</p>
                         <button type="button" class="button_step" name="pasos" id="addStep">+</button>
                         <ul id="steplist" class="steps__list">
-                            <li>
-                                <p>1</p>
-                                <input type="text" name="step" class="step" placeholder="Titulo paso">
-                                <textarea name="descripcionS" placeholder="descripcion" class="descripcionStep"></textarea>
-                                
-                                <input type="file" name="imagenPaso" class="imgPaso" placeholder="Add image">
-                                
-                                <div class="previewPaso"></div>
-                                <button type="button" class="deleteLi">🗑️</button>
-                            </li>
                             <!-- pasos titulo, imagen, imagen -->
                         </ul>
                     </label>
