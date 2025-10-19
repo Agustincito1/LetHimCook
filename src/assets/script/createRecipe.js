@@ -220,6 +220,13 @@ function verifyForm(errors){
 
     conE.appendChild(ul)
 }
+
+
+
+
+
+
+
 const form = document.getElementById('formCreate');
 form.addEventListener('submit', function(e) {
     e.preventDefault();
