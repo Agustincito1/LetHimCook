@@ -11,42 +11,47 @@
 <body>
     <header class="header">
         <a href="./menu.html"><img src="../assets/img/back.png" alt="" class="header__img"></a>
-        <article class="containerTitle">
-            <h2>Crear receta</h2>
-        </article>
     </header>
+    <aside class="main__aside" id="main-aside">
+        <h2 class="aside--title">Ingrediente</h2>
+        <section >
+            <input autocomplete="off" type="text" value="" name="ingrediente" id="filter" placeholder="Buscar ingrediente">
+            <div id="ingredientes" >
+
+            </div>
+        </section>
+       
+    </aside>
     <main class="main">
+
         <section class="main__section">
             <article class="section__containerForm">
+                
                 <div class="err" id="contenedorErr">
                 </div>
-                <form action="" class="formCreate" id="formCreate" enctype="multipart/form-data">
+                <form action="" class="formCreate" id="formCreate" enctype="multipart/form-data" autocomplete="off">
+                    <h1 class="form__title">Crear receta</h1>
                     <label for="name" class="nameLabel">
-                        <p>Nombre de la receta</p>
-                        <input type="text" name="name" placeholder="Nombre de la receta">
+                        <p  class="label__title">Nombre de la receta</p>
+                        <input type="text" class="label_input" name="name" placeholder="Nombre de la receta">
                     </label>
-
                     <label for="Ingredientes" class="ingLabel">
-                        <p class="ingredienteT">Ingredientes</p>
+                        <p class="ingredienteT" >Ingredientes</p>
                         <button type="button" class="buttonAdd" id="addIngre">+</button>
                         <ul id="ingredienteslist">
-                            <li>
-                                <p>1</p>
-                                <input type="text" name="ingrediente" class="ingrediente" placeholder="Ingrediente">
-                                <button type="button" class="deleteLi">🗑️</button>
-                            </li>
-                            
-                            <!-- ingredientes -->
+
                         </ul>
+
                     </label>
+
                     
                     <label for="descripcion" class="descripcionLabel">
-                        <p>Descripcion</p>
-                        <input type="text" name="recetaDescription" class="descripcionInput" placeholder="Descripcion">
+                        <p class="label__title">Descripcion</p>
+                        <input type="text" name="recetaDescription" class="descripcionInput label_input" placeholder="Descripcion">
                     </label>
 
                     <label for="imagenPrincipal" class="imgPrincipalLabel">
-                        <p>Imagen principal</p>
+                        <p class="label__title">Imagen principal</p>
                         <div class="imgPrincipalContainer">
                             <div class="imgPrincipalContainer__text">
                                 Add Image
@@ -79,7 +84,7 @@
                         </ul>
                     </label>
 
-                    <button class="btnCreate">Crear receta</button>
+                    <button class="form_button">Crear receta</button>
                 </form>
             </article>
         </section>

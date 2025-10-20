@@ -19,15 +19,11 @@
     }
 
     try{
-        $query = $pdo->prepare("DELETE 
-        FROM receta 
-        WHERE 
-            id_usuario = ? 
-        AND
-            id_receta = ?");
+        $query = $pdo->prepare("DELETE FROM cantidad_ingredientes WHERE id_receta = ?;
+            DELETE FROM receta WHERE id_receta = ? AND id_usuario = ?");
             
             
-        $query->execute([$user, $id]);
+        $query->execute([$id, $id, $user]);
 
         if($query){
             echo json_encode([

@@ -58,32 +58,144 @@ document.querySelectorAll('#steplist li').forEach(function(li) {
 
 
 const buttonAddIng = document.querySelector('#addIngre');
+const list = document.getElementById("ingredienteslist");
+const container = document.getElementById("ingredientes");
+const filter = document.getElementById("filter");
+
+fetch('../php/getIngredientes.php') 
+.then(response => response.json())
+.then(data => {
+    window.listIng = data;
+    mostrarResultados();
+})
+.catch(err => console.error('Error cargando ingredientes:', err));
+
+
+const mainA = document.getElementById("main-aside");
+
+    
+
+function mostrarResultados(filtro = '') {
+  container.innerHTML = ''; // limpiar resultados
+  let encontrado = false;
+
+  window.listIng.forEach((item, index) => {
+    if (item.nombre.toLowerCase().includes(filtro.toLowerCase())) {
+      const p = document.createElement('p');
+      p.textContent = item.nombre;
+      p.classList.add('ingrediente-item');
+
+      // Si es la primera coincidencia, podemos "seleccionarla"
+      if (!encontrado) {
+        p.classList.add('seleccionado'); 
+        encontrado = true;
+      }
+
+      // Click para completar input
+      p.addEventListener('click', () => {
+
+        const copyInput = mainA.dataset.valor.split(',');
+        const input = document.querySelectorAll(`.${copyInput[0]}`)
+        const inputC = document.querySelectorAll(`.${copyInput[1]}`)
+        const inputH = document.querySelectorAll(`.${copyInput[2]}`)
+        console.log(item)
+
+        console.log(copyInput)
+        input[0].value = item.nombre;
+        inputC[0].placeholder = item.unidad;
+        inputH[0].value = item.id_ingrediente;
+
+        mainA.classList.remove("asideLeft");
+        mainA.dataset.valor = "";
+        container.innerHTML = '';
+
+
+      });
+
+      container.appendChild(p);
+    }
+  });
+}
+
+
+filter.addEventListener('input', () => {
+    mostrarResultados(filter.value);
+});
+
+
+
 
 buttonAddIng.addEventListener('click', function() {
-    const list = document.getElementById("ingredienteslist");
     const cantidadIngredientes = list.getElementsByTagName('li').length;
     const nuevoNumero = cantidadIngredientes + 1;
 
-    const ingrediente = document.createElement('li');
+    const ingredienteLi = document.createElement('li');
+
+    const p = document.createElement('p');
+    const pC = document.createElement('p');
+    pC.textContent = "Cantidad";
+    pC.classList.add("pUnity")
+    p.textContent = nuevoNumero;
+
     const input = document.createElement('input');
+    const inputC = document.createElement('input');
+
+    inputC.type = 'text';
+    inputC.name = 'cantidadIngrediente';
+
+    input.classList.add(`ingrediente-${nuevoNumero}`);
     input.type = 'text';
     input.name = 'ingrediente';
     input.classList.add('ingrediente');
+
+    inputC.classList.add('ingredienteC');
+    inputC.classList.add(`ingredienteUnity-${nuevoNumero}`);
+    inputC.placeholder = "";
+
     input.placeholder = 'Ingrediente';
-    const p = document.createElement('p');
-    p.textContent = nuevoNumero;
+    input.setAttribute('list', 'ingredientesDatalist'); 
+
+    const inputH = document.createElement('input');
+    inputH.type = 'hidden';
+    inputH.name = 'ingredienteH';
+    inputH.classList.add(`ingredienteH-${nuevoNumero}`);    
+
 
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.classList.add('deleteLi');
     deleteBtn.textContent = '🗑️';
 
-    ingrediente.appendChild(p);
-    ingrediente.appendChild(input);
-    ingrediente.appendChild(deleteBtn);
 
-    list.appendChild(ingrediente);
+
+    input.addEventListener('click', () => {
+        mainA.classList.add("asideLeft");
+        mainA.dataset.valor = `ingrediente-${nuevoNumero},ingredienteUnity-${nuevoNumero},ingredienteH-${nuevoNumero}`;
+    });
+
+    deleteBtn.addEventListener('click', () => {
+        ingredienteLi.remove();
+        actualizarNumerosI();
+    });
+
+    ingredienteLi.appendChild(p);
+    ingredienteLi.appendChild(input);
+    ingredienteLi.appendChild(inputC);
+    ingredienteLi.appendChild(pC);
+    ingredienteLi.appendChild(deleteBtn);
+    ingredienteLi.appendChild(inputH);
+    list.appendChild(ingredienteLi);
 });
+
+
+function actualizarNumerosI() {
+    const items = list.querySelectorAll('li');
+    items.forEach((li, idx) => {
+        const p = li.querySelector('p');
+        if (p) p.textContent = idx + 1;
+    });
+}
+
 
 
 const buttonAddstep = document.querySelector('#addStep');
@@ -248,6 +360,12 @@ form.addEventListener('submit', function(e) {
         }
     });
 
+    const ingredienteInputC = form.querySelectorAll('#ingredienteslist .ingredienteC');
+    ingredienteInputC.forEach((input, idx) => {
+        if (!input.value.trim()) {
+            errores.push(`La cantidad ingrediente ${idx + 1} está vacío.`);
+        }
+    });
     // Validar descripción
     const descripcionInputVal = form.querySelector('input[name="recetaDescription"]');
     if (!descripcionInputVal.value.trim()) {
@@ -260,6 +378,7 @@ form.addEventListener('submit', function(e) {
         errores.push('La imagen principal vacio.');
     }
 
+    
     // Validar pasos
     const pasosLisVal = form.querySelectorAll('#steplist li');
     pasosLisVal.forEach((li, idx) => {
@@ -283,6 +402,7 @@ form.addEventListener('submit', function(e) {
     }   
     const formData = new FormData(form);
     const ingredientes = [];
+    const cantidadIng = [];
     const pasos = [];
     let nameR = "";
     let descrip = "";
@@ -291,6 +411,7 @@ form.addEventListener('submit', function(e) {
     // Recorremos todos los campos
 
     for (let [name, value] of formData) {
+    
         if (name.startsWith("name")){
             nameR = value
         }
@@ -300,10 +421,12 @@ form.addEventListener('submit', function(e) {
         if (name.startsWith("recetaDescription")){
             descrip = value
         }
-        if (name.startsWith("ingrediente")) {
+        if (name.startsWith("ingredienteH")) {
             ingredientes.push(value);
         }
-
+        if (name.startsWith("cantidadIngrediente")) {
+            cantidadIng.push(value);
+        }
         else if (name.startsWith("step")) {
             pasos.push({ step: value }); 
         }
@@ -320,23 +443,17 @@ form.addEventListener('submit', function(e) {
         }
     }
 
-    // let imgIndex = 0;
-    // for (let [name, value] of formData) {
-    //     if (name.startsWith("imagenPaso")) {
-    //         if (pasos[imgIndex]) {
-    //             pasos[imgIndex].imagen = value;
-    //             imgIndex++;
-    //         }
-    //     }
-    // }
-
+   
     const finalFormData = new FormData();
+
 
     // Agregar campos simples
     finalFormData.append('name', nameR);
     finalFormData.append('descripcion', descrip);
-    finalFormData.append('ingredientes', JSON.stringify(ingredientes));
+    finalFormData.append('ingredientesID', JSON.stringify(ingredientes));
+    finalFormData.append('ingredientesCantidad', JSON.stringify(cantidadIng));
     finalFormData.append('pasos', JSON.stringify(pasos));
+
     // Imagen principal
     const imagenPrincipal = form.querySelector('input[name="imagenPrincipal"]');
     if (imagenPrincipal.files[0]) {
@@ -351,7 +468,8 @@ form.addEventListener('submit', function(e) {
             finalFormData.append(`imagen_paso_${idx}`, imgPasoInput.files[0]);
         }
     });
-    
+
+
     fetch('../php/createRecipe.php', {
         method: 'POST',
         body: finalFormData,
@@ -374,3 +492,10 @@ form.addEventListener('submit', function(e) {
         alert('Error en la petición: ' + error);
     });
 });
+
+
+
+
+
+
+

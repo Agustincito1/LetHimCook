@@ -13,9 +13,11 @@
     
     $name = $_POST["name"] ?? '';
     $descripcion = $_POST["descripcion"] ?? '';
-    $ingredientes = json_decode($_POST["ingredientes"] ?? '[]', true);
+    $ingredientes = json_decode($_POST["ingredientesID"] ?? '[]', true);
+    $ingredientesC = json_decode($_POST["ingredientesCantidad"] ?? '[]', true);
     $pasos = json_decode($_POST["pasos"] ?? '[]', true);
     $imgPrin = $_FILES["imgPrin"] ?? null;
+
 
 
     if (!$id_usuario || !$name || !$descripcion) {
@@ -56,27 +58,43 @@
             $imagenesPasosPaths[] = $imgPasoPath;
         }
     }
-    
-    $ingredientesJson = [];
-    foreach($ingredientes as $ingrediente){
-        $ingredientesJson[] = $ingrediente;
-    }
+
+
     $pasoAndDescriptionJson = json_encode($pasoAndDescription);
-    $ingredientesJson = json_encode($ingredientesJson);
     $imagenesJson = json_encode([
         'principal' => $imgPath,
         'pasos' => $imagenesPasosPaths
     ]);
 
+
+
     try {
         $stmt = $pdo->prepare("INSERT INTO 
-            receta (id_usuario, titulo, pasos, descripcion, imagenes, ingredientes) 
-            VALUES (?, ?, ?, ?, ?,?)");
+            receta (id_usuario, titulo, pasos, descripcion, imagenes) 
+            VALUES (?, ?, ?, ?, ?)");
 
-        $stmt->execute([$id_usuario, $name, $pasoAndDescriptionJson, $descripcion, $imagenesJson, $ingredientesJson]);
+        $stmt->execute([$id_usuario, $name, $pasoAndDescriptionJson, $descripcion, $imagenesJson]);
+
+        $id_receta = $pdo->lastInsertId();
+
+        if(!empty($ingredientes)){
+            $stmtIng = $pdo->prepare("INSERT INTO 
+                cantidad_ingredientes (id_receta, id_ingrediente, cantidad) 
+            VALUES (?, ?, ?)");
+
+            foreach($ingredientes as $ingrediente){
+                $stmtIng->execute([$id_receta, $ingrediente, $ingredientesC[$index]]);
+            }
+        }
+    
         echo json_encode(['success' => true, 'message' => 'Receta creada correctamente']);
+
+
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => 'Error al guardar la receta: ' . $e->getMessage()]);
     }
+   
+    
+   
 
 ?>
