@@ -73,7 +73,7 @@ fetch('../php/getIngredientes.php')
 
 const mainA = document.getElementById("main-aside");
 
-    
+
 
 function mostrarResultados(filtro = '') {
   container.innerHTML = ''; // limpiar resultados
@@ -92,7 +92,9 @@ function mostrarResultados(filtro = '') {
       }
 
       // Click para completar input
-      p.addEventListener('click', () => {
+    p.addEventListener('click', () => {
+
+
 
         const copyInput = mainA.dataset.valor.split(',');
         const input = document.querySelectorAll(`.${copyInput[0]}`)
@@ -108,7 +110,7 @@ function mostrarResultados(filtro = '') {
         mainA.classList.remove("asideLeft");
         mainA.dataset.valor = "";
         container.innerHTML = '';
-
+        filter.value = "";
 
       });
 
@@ -161,10 +163,12 @@ buttonAddIng.addEventListener('click', function() {
     inputH.classList.add(`ingredienteH-${nuevoNumero}`);    
 
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.type = 'button';
+    const deleteBtn = document.createElement('div');
+    const imgDel = document.createElement("img");
+    imgDel.src = "../assets/img/close.png";
     deleteBtn.classList.add('deleteLi');
-    deleteBtn.textContent = '🗑️';
+    deleteBtn.appendChild(imgDel);
+
 
 
 
@@ -254,10 +258,17 @@ buttonAddstep.addEventListener('click', function() {
         reader.readAsDataURL(file);
     });
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.type = 'button';
+    const deleteBtn = document.createElement('div');
+    const imgDel = document.createElement("img");
+    imgDel.src = "../assets/img/close.png";
     deleteBtn.classList.add('deleteLi');
-    deleteBtn.textContent = '🗑️';
+    deleteBtn.appendChild(imgDel);
+
+
+    deleteBtn.addEventListener("click", ()=>{
+        stepLi.remove();
+        actualizarNumeros("steplist");
+    })
 
     stepLi.appendChild(p);
     stepLi.appendChild(input);
@@ -284,6 +295,14 @@ function actualizarNumeros(listaId) {
 // Actualiza números después de borrar
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('deleteLi')) {
+        const li = e.target.closest('li');
+        const lista = li.parentElement;
+        if (li) li.remove();
+        if (lista.id === 'ingredienteslist' || lista.id === 'steplist') {
+            actualizarNumeros(lista.id);
+        }
+    }
+    if (e.target.classList.contains('deleteLiI')) {
         const li = e.target.closest('li');
         const lista = li.parentElement;
         if (li) li.remove();
@@ -347,6 +366,15 @@ form.addEventListener('submit', function(e) {
 
     let errores = [];
     // Validar nombre de la receta
+    const divSteps = document.getElementById("steplist");
+    if (divSteps.innerHTML.trim() === "") {
+        errores.push('No hay pasos cargados.');
+    }
+    const divIngredientes = document.getElementById("ingredienteslist");
+    if (divIngredientes.innerHTML.trim() === "") {
+        errores.push('No hay ingredientes cargados.');
+    }
+    
     const nombreInputVal = form.querySelector('input[name="name"]');
     if (!nombreInputVal.value.trim()) {
         errores.push('El nombre de la receta está vacio.');

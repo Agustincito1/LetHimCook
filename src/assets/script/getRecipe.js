@@ -14,26 +14,27 @@ async function getRecipe(){
         const data = await response.json();
         if(data.success){
 
-            const receta = data.data[0];
-
+            const receta = data.data.receta[0];
+            const ingredientes = data.data.ingrediente;
+          
             const imagenes = JSON.parse(receta.imagenes);
             imgP.src = imagenes.principal;
 
             titleName.textContent = receta.titulo;
-
-            const listI = JSON.parse(receta.ingredientes);
-
+            
+            const listI = ingredientes;
+            console.log(ingredientes)
             listI.forEach((value, index) => {
                 const li = document.createElement("li");
                 const pNumber = document.createElement("p");
                 const pText = document.createElement("p");
                 pNumber.textContent = index + 1;
-                pText.textContent = value;
+                pText.textContent = value.nombre +" - "+ value.cantidad + " " + value.unidad;
                 li.appendChild(pNumber);
                 li.appendChild(pText);
                 ingredienteCont.appendChild(li)
             });
-
+            
             const listC = JSON.parse(receta.pasos);
             listC.forEach((value, index) => {
                 console.log(value)

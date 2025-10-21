@@ -37,7 +37,7 @@
                     </label>
                     <label for="Ingredientes" class="ingLabel">
                         <p class="ingredienteT" >Ingredientes</p>
-                        <button type="button" class="buttonAdd" id="addIngre">+</button>
+                        <div class="button_step" name="buttonAdd" id="addIngre"><img src="../assets/img/plus.png" alt=""></div>
                         <ul id="ingredienteslist">
 
                         </ul>
@@ -55,8 +55,8 @@
                         <div class="imgPrincipalContainer">
                             <div class="imgPrincipalContainer__text">
                                 Add Image
-                                <div>
-                                    +
+                                <div class="divImgAdd">
+                                    <img src="../assets/img/plus.png" alt="" srcset="">
                                 </div>
                             </div>
                             <input type="file" name="imagenPrincipal" id="imagenPrincipal" placeholder="Add image">
@@ -68,19 +68,8 @@
 
                     <label for="pasos" class="steps">
                         <p class="steps__title">Pasos</p>
-                        <button type="button" class="button_step" name="pasos" id="addStep">+</button>
+                        <div class="button_step" name="pasos" id="addStep"><img src="../assets/img/plus.png" alt=""></div>
                         <ul id="steplist" class="steps__list">
-                            <li>
-                                <p>1</p>
-                                <input type="text" name="step" class="step" placeholder="Titulo paso">
-                                <textarea name="descripcionS" placeholder="descripcion" class="descripcionStep"></textarea>
-                                
-                                <input type="file" name="imagenPaso" class="imgPaso" placeholder="Add image">
-                                
-                                <div class="previewPaso"></div>
-                                <button type="button" class="deleteLi">🗑️</button>
-                            </li>
-                            <!-- pasos titulo, imagen, imagen -->
                         </ul>
                     </label>
 
