@@ -1,4 +1,4 @@
-
+import { alertT } from './alert.js';
 const btn = document.getElementById('logOut');
 
 btn.addEventListener('click', async () => {
@@ -8,7 +8,14 @@ btn.addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.success) {
-        window.location.href = '../../index.html';
+        alertT("Session cerrada correctamente");
+        setTimeout(
+            ()=>{
+                window.location.href = '../../index.html';
+            }, 2000
+        );
+
+       
     } else {
         alert('Error al cerrar sesión');
     }

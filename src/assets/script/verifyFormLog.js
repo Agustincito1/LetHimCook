@@ -1,8 +1,7 @@
+import { alertT } from './alert.js';
 
 const form = document.getElementById("logForm")
 const conE = document.getElementById("contenedorErr")
-const sus = document.getElementById("succ")
-
 
 form.addEventListener("submit", (event)=>{
 
@@ -40,16 +39,10 @@ form.addEventListener("submit", (event)=>{
         .then(res=>res.json())
         .then(data=>{
             if(data.success === true){
-                console.log(data.message)
-                sus.style.display = "block"
-                
-                sus.style.opacity = 1
-                setInterval(()=>{
-                    sus.style.opacity = 0
+                alertT("Inicio de session completado");
+                setTimeout(()=>{
+                    window.location.href = "menu.html";
                 },2000)
-                setInterval(()=>{
-                    window.location.href = "menu.html"
-                },2200)
             }
             else{
                 errors.push(data.message)

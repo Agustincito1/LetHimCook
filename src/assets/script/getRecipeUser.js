@@ -1,3 +1,6 @@
+
+import { alertT } from './alert.js';
+
 async function delAdd(id) {
     try {
         const res = await fetch(`../php/delAdd.php`, {
@@ -78,7 +81,12 @@ async function getR() {
                 buttonCont.addEventListener("click", (e)=>{
                     e.preventDefault()
                     if(delAdd(receta.id_receta)){
-                        location.reload();
+                        alertT("Receta eliminada correctamente")
+
+                        setTimeout(()=>{
+                            location.reload();
+                        }, 2000)
+                       
                     }
                 });
                 footer.textContent = receta.nombreUsuario || 'Desconocido';

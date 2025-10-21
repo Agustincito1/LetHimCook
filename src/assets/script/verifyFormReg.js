@@ -1,7 +1,8 @@
 
 const form = document.getElementById("regForm")
 const conE = document.getElementById("contenedorErr")
-const sus = document.getElementById("succ")
+import { alertT } from './alert.js';
+
 form.addEventListener("submit", (event)=>{
 
     
@@ -56,16 +57,12 @@ form.addEventListener("submit", (event)=>{
         .then(res=>res.json())
         .then(data=>{
             if(data.success === true){
-                console.log(data.message)
-                sus.style.display = "block"
-                
-                sus.style.opacity = 1
+                alertT('Usuario registrado correctamente')
+                    
+
                 setTimeout(()=>{
-                    sus.style.opacity = 0
+                    window.location.href = "menu.html";
                 },2000)
-                setTimeout(()=>{
-                    window.location.href = "login.html"
-                },2200)
             }
             else{
                 

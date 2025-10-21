@@ -103,12 +103,12 @@ body{
 .label__title{
     background-color: #FAF3E0;
     position: absolute;
-    padding: 0.6vw;
     z-index: 2;
     margin: 0;
     top: -15%;
     left: 0%;
     border-radius: 0.2vw;
+    padding: 3%;
     font-size: clamp(0.1rem, 1vw, 5rem);
     transition: all 0.2s;
 }
@@ -215,8 +215,9 @@ input, button{
     z-index: 100;
     top: -2vw;
     left: -2.8%;
-    padding: 1vw;
+    padding: 3%;
     border-radius: 0.3vw;
+    font-size: clamp(0.1rem, 1vw, 5rem);
     
 }
 .ingLabel .buttonAdd{
@@ -480,6 +481,8 @@ input{
     background-color: #FAF3E0;
     color: #000000;
     text-align: center;
+    display: grid;
+    place-items: center;
     font-size: clamp(1rem, 2.5vw, 3rem);
     padding: 0;
     width: 3vw;
@@ -490,7 +493,9 @@ input{
     height: 100%;
     margin: auto;
     padding: 0;
+    border-radius: 0.5vw;
     display: grid;
+    background-color: #333333;
     place-items: center;
 }
 
@@ -515,13 +520,33 @@ input{
     z-index: 100;
     background-color: #FAF3E0;
     position: absolute;
-    padding: 0vw;
+    padding: 3%;
     top: -2vw;
     border-radius: 0.3vw;
+    font-size: clamp(0.1rem, 1vw, 5rem);
+}
+.button_stepI{
+    top: -1.5vw;
+    left: 92%;
+    background-color: #FAF3E0;
+    position: absolute;
+    padding: 0.5vw;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3vw;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
 }
 
+.button_step:hover{
+    transform: scale(1.1,1.1);
+}
+.button_stepI:hover{
+    transform: scale(1.1,1.1);
+}
 .button_step{
-    top: -2vw;
+    top: -1.5vw;
     left: 95%;
     background-color: #FAF3E0;
     position: absolute;
@@ -531,8 +556,13 @@ input{
     border-radius: 0.3vw;
     display: grid;
     place-items: center;
+    transition: all 0.2s;
 }
 .button_step img{
+    margin: 0;
+    width: 1.2vw;
+}
+.button_stepI img{
     margin: 0;
     width: 1.2vw;
 }
@@ -587,11 +617,23 @@ input{
     border: none;
     border-radius: 0.2vw;
     background-color: #FAF3E0;
-
     color: #000000;
     padding: 2vw;
     max-height: 4vw;
     font-size: clamp(1rem, 1.5vw, 2rem);
+    transition: all 0.2s;
+}
+.steps__list li input:hover{
+    transform: scale(1.02, 1.02);
+}
+
+.steps__list li input:focus{
+    background-color: #4E4E4E;
+    transform: scale(1.02, 1.02);
+    color: #c6f377;
+}
+.steps__list li input:focus::placeholder{
+    color: #c6f377;
 }
 
 .steps__list li input[type="file"]{
@@ -604,6 +646,7 @@ input{
     cursor: pointer;
     transition: background 0.2s;
     grid-column-start: 1;
+    transition: all 0.2s;
     grid-column-end: 3;
 }
 
@@ -617,6 +660,8 @@ input{
   font-size: 1rem;
 }
 .steps__list li textarea{
+    cursor: pointer;
+    outline: none;
     width: 100%;
     height: 10vw;
     border: none;
@@ -629,9 +674,32 @@ input{
     resize: none;
     grid-column-start: 1;
     grid-column-end: 3;
+    transition: all 0.2s;
 }
 
+.steps__list li textarea:hover{
+    transform: scale(1.02, 1.02);
+}
 
+.steps__list li textarea:focus{
+    background-color: #4E4E4E;
+    transform: scale(1.02, 1.02);
+    color: #c6f377;
+}
+.steps__list li textarea:focus::placeholder{
+    color: #c6f377;
+}
+.steps__list li .previewPaso{
+    display: grid;
+    place-items: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+}
+.steps__list li .previewPaso img{
+    background-color: #6D765D;
+    border-radius: 0.5vw;
+}
 
 
 
@@ -699,6 +767,34 @@ input{
     gap: 1%;
     transition: all 0.2s;
 }
+
+
+.main__aside div::-webkit-scrollbar {
+  width: 0.5vw; 
+  height: 2vw; 
+}
+
+.main__aside div::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  width: 0.5vw;
+  border-radius: 0.5vw;
+}
+
+.main__aside div::-webkit-scrollbar-thumb {
+  background-color: #A3B18A;
+  border-radius: 2vw;
+  border: 0.2vw solid #1a1a1a;
+}
+
+
+.main__aside div::-webkit-scrollbar-thumb:hover {
+  background-color: #c6f377;
+}
+
+.main__aside div::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
 .main__aside div p{
     height: 3vw;
     display: grid;

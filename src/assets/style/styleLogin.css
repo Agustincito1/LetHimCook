@@ -247,19 +247,6 @@ input{
     width: 3vw;
     height: 3vw;
 }
-.success{
-    z-index: 100;
-    background-color: rgba(13, 241, 13, 0.87);
-    color: rgb(0, 0, 0);
-    font-size: clamp(0.5rem, 2vw, 10rem);
-    border-radius: 0.5vw;
-    top: 40%;
-    position: absolute;
-    display: none;
-    opacity: 0;
-    transition: all 0.4s;
-    padding: 5%;
-}
 
 @keyframes alertIn {
   0% {

@@ -1,4 +1,8 @@
 // Vista previa de imagen principal
+import { alertT } from './alert.js';
+
+
+
 const inputImagenPrincipal = document.getElementById('imagenPrincipal');
 const previewPrincipal = document.getElementById('previewPrincipal');
 
@@ -217,7 +221,7 @@ buttonAddstep.addEventListener('click', function() {
 
     const textarea = document.createElement('textarea');
     textarea.name = 'descripcionS';
-    textarea.placeholder = 'descripcion';
+    textarea.placeholder = 'Descripcion del paso';
 
     const inputFile = document.createElement('input');
     inputFile.type = 'file';
@@ -505,9 +509,12 @@ form.addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Receta creada correctamente');
             form.reset();
-            // Opcional: limpiar previews
+            alertT('Receta creada correctamente')
+    
+            setTimeout(() => {
+                window.location.href = "recipesCreate.html";
+            }, 3000)
             previewPrincipal.innerHTML = '';
             document.querySelectorAll('.previewPaso').forEach(div => div.innerHTML = '');
         } else {
@@ -520,9 +527,6 @@ form.addEventListener('submit', function(e) {
         alert('Error en la petición: ' + error);
     });
 });
-
-
-
 
 
 

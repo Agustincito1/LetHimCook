@@ -1,0 +1,64 @@
+.topall{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  z-index: 200;
+  display: none;
+  background-color: #636363c5;
+  animation: fadeIn 0.6s ease forwards;
+
+}
+  .alertTrue {
+    background-color: #e8f9ee;
+    border: 2px solid #3ccf4e;
+    color: #1e8449;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  .alertTrue-Title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .alertTrue-Subtext {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    color: #256d3a;
+  }
+
+  /* Animación suave */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividad */
+  @media (max-width: 480px) {
+    .alertTrue {
+      padding: 1rem;
+      width: 90%;
+    }
+    .alertTrue-Title {
+      font-size: 1.2rem;
+    }
+    .alertTrue-Subtext {
+      font-size: 0.9rem;
+    }
+  }
