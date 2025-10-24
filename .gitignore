@@ -12,3 +12,10 @@ vendor/composer/InstalledVersions.php
 vendor/composer/platform_check.php
 vendor/phpmailer/phpmailer/
 .ENV
+vendor/vlucas/phpdotenv/
+vendor/symfony/polyfill-php80/
+vendor/symfony/polyfill-mbstring/
+vendor/symfony/polyfill-ctype/
+vendor/phpoption/phpoption/
+vendor/graham-campbell/result-type/
+vendor/composer/autoload_files.php

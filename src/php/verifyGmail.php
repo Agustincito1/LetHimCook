@@ -5,7 +5,7 @@
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $gmail    = $data["gmail"] ?? "";
+    $gmail  = $data["gmail"] ?? "";
 
     $stmt = $pdo->prepare("SELECT 
         nombreUsuario
@@ -40,7 +40,6 @@
     $code = random_int(100000, 999999);
 
 
-    //explication
     $codeHash = password_hash($code, PASSWORD_DEFAULT);
     $_SESSION['verification'] = [
         'email' => $toEmail,
@@ -60,7 +59,7 @@
         $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
         $mail->Port       = $_ENV['SMTP_PORT'];
 
-        $mail->setFrom('Hola buenas', 'LetHimCook');
+        $mail->setFrom($_ENV['SMTP_USER'], 'LetHimCook');
         $mail->addAddress($toEmail, $toName);
         $mail->isHTML(true);
         $mail->Subject = 'Código de verificación';

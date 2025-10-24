@@ -1,4 +1,6 @@
 import { alertT } from './alert.js';
+const email = localStorage.getItem('verification');
+
 
 const form = document.getElementById("logForm")
 const conE = document.getElementById("contenedorErr")
@@ -7,39 +9,44 @@ form.addEventListener("submit", (event)=>{
 
     event.preventDefault();
 
-    const gmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const errors = []
-    const gmail = form.gmail.value.trim();
+    const password = form.password.value.trim();
+    const passwordRepeat = form.repeatPassword.value.trim();
 
-    if (!gmailRegex.test(gmail)) {
-        errors.push("Ingresa correctamente el gmail");
+
+    if(password === ""){
+        errors.push("La contraseña esta vacio")
     }
-
-    if(gmail === ""){
-        errors.push("El gmail esta vacio")
+    else{
+        if(passwordRepeat === ""){
+            errors.push("Repita la contraseña")
+        }
+        else{
+            if(passwordRepeat !== password){
+                errors.push("Las contraseñas son distintas")
+            }
+        }
     }
-
-
+   
+   
     if (errors.length > 0){
        verifyForm(errors);
     }
     else{
-        fetch("../php/verifyGmail.php",{
+        fetch("../php/resetPass.php",{
             method: "POST",
             body:JSON.stringify({
-                gmail: gmail
+                password: password,
+                gmail: email,
             })
                 
-            
         })
         .then(res=>res.json())
         .then(data=>{
             if(data.success === true){
-                alertT("Verifica tu gmail");
+                alertT("Contraseña restaurada correctamente");
                 setTimeout(()=>{
-
-                    localStorage.setItem('email', data.data);
-                    window.location.href = "verifyCode.html";
+                    window.location.href = "login.html";
                 },2000)
             }
             else{
