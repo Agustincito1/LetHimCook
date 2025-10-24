@@ -11,3 +11,4 @@ vendor/composer/installed.php
 vendor/composer/InstalledVersions.php
 vendor/composer/platform_check.php
 vendor/phpmailer/phpmailer/
+.ENV
