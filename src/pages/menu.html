@@ -45,23 +45,28 @@
         <section class="main__section" id="main-section">
            
             <article class="section--filterCont">
-                <form action="" class="filterCont--form" id="formFilter">
+                <form action="" class="filterCont--form" id="formFilter" autocomplete="off">
                     <label for="ingredientesCont" class="ingredientesCont">
-                        <button type="submit" id="btnAddIng">+</button>
+                        <div class="btnContainer">   
+                            <button id="btnAddIng"><img src="../assets/img/plus.png" alt=""></button>
+                            <button id="btnSearchING"><img src="../assets/img/search.png" alt=""></button>
+                            <button id="btnReset"><img src="../assets/img/reset.png" alt=""></button>
+                        </div>
+                       
                         <input type="text" name="ingredientes" id="ingredientes" placeholder="Ingrediente">
                         
                     </label>
                     <div  class="ingredienteContainer" id="ingredienteContainer">
-                        <span></span>
+
                         <ul id="ingredientesList">
 
                         </ul>
                     </div>
                 </form>
-                <form action="" class="filterCont--form" id="formFilter">
+                <form action="" class="filterCont--form" id="formFilter" autocomplete="off">
                     <input type="text" name="filter" id="filter" placeholder="Buscar receta...">
                 </form>
-                <form action="" class="filterCont--form" id="formRuleta">
+                <form action="" class="filterCont--form" id="formRuleta" autocomplete="off">
                     <input type="submit" name="rulet" id="ruleta" value="Receta random">
                 </form>
             </article>

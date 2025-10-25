@@ -129,11 +129,6 @@ async function getRecipes(id) {
         }
         else{
             console.log(data.error)
-            // const error = document.createElement("h2");
-            // error.innerHTML = data.error
-            // error.classList.add("errorRecipe")
-            // recipeCont.appendChild(error)
-            // return data.error;
         }
     } catch (error) {
         return error;
@@ -173,7 +168,6 @@ input.addEventListener("input", async function(e) {
     e.preventDefault();
     
     const query = input.value.toLowerCase();
-    console.log(query);
 
     const res = await fetch(`../php/filter.php`, {
         method: "POST",
@@ -207,7 +201,9 @@ input.addEventListener("input", async function(e) {
             if (imagenes && imagenes.principal) {
                 imagenPrincipal = imagenes.principal.replace('..', '..'); // Ajusta si es necesario
             }
-        } catch (e) {}
+        } catch (e) {
+            console.log(e)
+        }
 
         // Header con imagen principal
         const header = document.createElement('header');
@@ -222,7 +218,7 @@ input.addEventListener("input", async function(e) {
         const h3 = document.createElement('h3');
         h3.textContent = receta.titulo || 'Sin título';
         const p = document.createElement('p');
-        p.textContent = 'En 3 pasos'; // Puedes ajustar si tienes la cantidad real de pasos
+        p.textContent = receta.descripcion || "sin descripcion"; // Puedes ajustar si tienes la cantidad real de pasos
         main.appendChild(h3);
         main.appendChild(p);
 
@@ -282,29 +278,144 @@ arrow.addEventListener("click", () => {
 const formF = document.getElementById("formFilter");
 const inputIng = document.getElementById("ingredientes");
 const listIng = document.getElementById("ingredienteContainer");
-listIng.style.display = "none";
+listIng.style.display ="none";
 const ulList = document.getElementById("ingredientesList");
 const btnAdd = document.getElementById("btnAddIng");
+const btnSearch = document.getElementById("btnSearchING");
+const btnReset = document.getElementById("btnReset");
 
+
+btnSearch.addEventListener("click" ,async (e)=>{
+    e.preventDefault();
+
+
+    if(listIng.querySelectorAll("li").length > 0){
+
+
+        const list = listIng.querySelectorAll("li");
+        const ingredientes = []
+        list.forEach(Li=>{
+
+            const text = Li.querySelector("p").textContent;
+            if(/^\D+$/.test(text)){
+                ingredientes.push(text.toLocaleLowerCase());
+            }
+        })
+        try {
+            const res = await fetch(`../php/filter.php`, {
+                method: "POST",
+                body: JSON.stringify({ ingredientes: ingredientes }),
+            });
+             const data = await res.json();
+        
+
+            // Manejo de errores
+            if (data.success === false) {
+                const listRecipes = document.getElementById("recipeCont");
+                listRecipes.innerHTML = `<h2 class="errorRecipe">${data.error}</h2>`;
+                return data.error;
+            }
+
+            // Mostrar las recetas
+            const listRecipes = document.getElementById("recipeCont");
+            listRecipes.innerHTML = ""; 
+
+            data.data.forEach(receta => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `./recipes.html?id=${receta.id_receta}`;
+                li.className = 'recipe';
+
+                // Parsear imagen principal
+                let imagenPrincipal = '../assets/img/user.jpg';
+                try {
+                    const imagenes = JSON.parse(receta.imagenes);
+                    if (imagenes && imagenes.principal) {
+                        imagenPrincipal = imagenes.principal.replace('..', '..'); // Ajusta si es necesario
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
+
+                // Header con imagen principal
+                const header = document.createElement('header');
+                const img = document.createElement('img');
+
+                img.src = imagenPrincipal;
+                img.alt = '';
+                header.appendChild(img);
+
+                // Main con título y pasos
+                const main = document.createElement('main');
+                const h3 = document.createElement('h3');
+                h3.textContent = receta.titulo || 'Sin título';
+                const p = document.createElement('p');
+                p.textContent = receta.descripcion || "sin descripcion"; // Puedes ajustar si tienes la cantidad real de pasos
+                main.appendChild(h3);
+                main.appendChild(p);
+
+                // Footer con nombre de usuario
+                const footer = document.createElement('footer');
+                footer.textContent = receta.nombreUsuario || 'Desconocido';       
+                a.appendChild(header);
+                a.appendChild(main);
+                a.appendChild(footer);
+                li.appendChild(a);
+                listRecipes.appendChild(li);
+            });
+        } catch (error) {
+            console.log(error)
+        }
+       
+    }
+});
+
+
+btnReset.addEventListener("click" ,(e)=>{
+    e.preventDefault();
+
+    inputIng.value = "";
+    ulList.textContent = "";
+    listIng.style.display = "none";
+
+});
 
 formF.addEventListener("submit" ,(e)=>{
     e.preventDefault()
+
     if(inputIng.value !== ""){
-        const p = document.createElement("p");
-        p.textContent = inputIng.value;
-        inputIng.value = "";
-        ulList.appendChild(p)
+        if(/^\D+$/.test(inputIng.value)){
+            const li = document.createElement("li");
+            const p = document.createElement("p");
+            p.textContent = inputIng.value;
+            const deleteBtn = document.createElement('div');
+            const imgDel = document.createElement("img");
+            imgDel.src = "../assets/img/close.png";
+            deleteBtn.classList.add('deleteLi');
+            deleteBtn.appendChild(imgDel);
+
+            li.appendChild(p)
+            li.appendChild(deleteBtn)
+
+            deleteBtn.addEventListener("click", ()=>{
+                li.remove();
+            });
+
+            inputIng.value = "";
+            ulList.appendChild(li)
+       
+        }   
+       
+    }
+    
+    if(listIng.querySelectorAll("li").length){
+        listIng.style.display = "grid";
     }
 
 })
 
-inputIng.addEventListener("mouseenter" ,()=>{
-    listIng.style.display = "grid";
-
-})
-
-
-listIng.addEventListener("mouseleave" ,()=>{
-
+formF.addEventListener("mouseleave" ,()=>{
     listIng.style.display = "none";
+
 })
+
