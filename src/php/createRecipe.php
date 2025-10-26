@@ -82,7 +82,7 @@
                 cantidad_ingredientes (id_receta, id_ingrediente, cantidad) 
             VALUES (?, ?, ?)");
 
-            foreach($ingredientes as $ingrediente){
+            foreach($ingredientes as $index => $ingrediente){
                 $stmtIng->execute([$id_receta, $ingrediente, $ingredientesC[$index]]);
             }
         }

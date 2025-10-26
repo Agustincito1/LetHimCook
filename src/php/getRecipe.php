@@ -37,6 +37,7 @@
 
 
         $query = $pdo->prepare("SELECT 
+            ingredientes.id_ingrediente,
             ingredientes.nombre,
             cantidad_ingredientes.cantidad,
             tipo_unidad.unidad

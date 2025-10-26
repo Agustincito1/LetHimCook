@@ -108,13 +108,14 @@ body{
     justify-items: center;
     place-items: center;
     justify-content: center;
-
+    
 }
 
 .star {
     width: 5vw;
     height: 5vw;
-    background: #4E4E4E;
+    background-color: #4E4E4E;
+   
     clip-path: polygon(
         50% 0%,
         61% 35%,
@@ -128,6 +129,16 @@ body{
         39% 35%
     );
     display: inline-block;
+    transition: color 0.2s;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+}
+
+.star.active {
+  background-color: rgb(255, 230, 0); 
+  transform: scale(1.2, 1.2);
+
 }
 .main{
 

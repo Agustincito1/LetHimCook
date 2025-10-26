@@ -11,44 +11,49 @@
 <body>
     <header class="header">
         <a href="./menu.html"><img src="../assets/img/back.png" alt="" class="header__img"></a>
-        <article class="containerTitle">
-            <h2>Crear receta</h2>
-        </article>
     </header>
+    <aside class="main__aside" id="main-aside">
+        <h2 class="aside--title">Ingrediente</h2>
+        <section >
+            <input autocomplete="off" type="text" value="" name="ingrediente" id="filter" placeholder="Buscar ingrediente">
+            <div id="ingredientes" >
+
+            </div>
+        </section>
+       
+    </aside>
     <main class="main">
         <section class="main__section">
             <article class="section__containerForm">
                 <div class="err" id="contenedorErr">
                 </div>
-                <form action="" class="formCreate" id="formUpdate" enctype="multipart/form-data">
-
+                <form action="" class="formCreate" id="formUpdate" enctype="multipart/form-data" autocomplete="off">
+                    <h1 class="form__title">Actualizar</h1>
                     <label for="name" class="nameLabel">
-                        <p>Nombre de la receta</p>
-                        <input type="text" name="name" id="recetaTitle" placeholder="Nombre de la receta">
+                        <p  class="label__title">Nombre de la receta</p>
+                        <input type="text" class="label_input" name="name" id="recetaTitle" placeholder="Nombre de la receta">
                     </label>
 
                     <label for="Ingredientes" class="ingLabel">
-                        <p class="ingredienteT">Ingredientes</p>
-                        <button type="button" class="buttonAdd" id="addIngre">+</button>
+                        <p class="ingredienteT" >Ingredientes</p>
+                        <div class="button_step" name="buttonAdd" id="addIngre"><img src="../assets/img/plus.png" alt=""></div>
                         <ul id="ingredienteslist">
-                          
-                            
-                            <!-- ingredientes -->
+
                         </ul>
                     </label>
                     
                     <label for="descripcion" class="descripcionLabel">
-                        <p>Descripcion</p>
-                        <input type="text" name="recetaDescription" class="descripcionInput" id="descripcion" placeholder="Descripcion">
+                        <p class="label__title">Descripcion</p>
+                        <input type="text" id="descripcion" name="recetaDescription" class="descripcionInput label_input" placeholder="Descripcion">
                     </label>
 
                     <label for="imagenPrincipal" class="imgPrincipalLabel">
-                        <p>Imagen principal</p>
+                        <p class="label__title">Imagen principal</p>
                         <div class="imgPrincipalContainer">
                             <div class="imgPrincipalContainer__text">
                                 Add Image
-                                <div>
-                                    +
+                                <div class="divImgAdd">
+                                    <img src="../assets/img/plus.png" alt="" srcset="">
                                 </div>
                             </div>
                             <input type="file" name="imagenPrincipal" id="imagenPrincipal" placeholder="Add image">
@@ -60,13 +65,12 @@
 
                     <label for="pasos" class="steps">
                         <p class="steps__title">Pasos</p>
-                        <button type="button" class="button_step" name="pasos" id="addStep">+</button>
+                        <div class="button_stepI" name="pasos" id="addStep"><img src="../assets/img/plus.png" alt=""></div>
                         <ul id="steplist" class="steps__list">
-                            <!-- pasos titulo, imagen, imagen -->
                         </ul>
                     </label>
 
-                    <button class="btnCreate">Crear receta</button>
+                    <button class="form_button">Actualizar</button>
                 </form>
             </article>
         </section>
@@ -75,7 +79,7 @@
     <footer class="footer">
 
     </footer>
-    <script src="../assets/script/updateRecipe.js"></script>
+    <script type="module" src="../assets/script/updateRecipe.js"></script>
     <script src="../assets/script/verSession.js"></script>
 </body>
 </html>

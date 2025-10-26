@@ -23,7 +23,6 @@ async function getRecipe(){
             titleName.textContent = receta.titulo;
             
             const listI = ingredientes;
-            console.log(ingredientes)
             listI.forEach((value, index) => {
                 const li = document.createElement("li");
                 const pNumber = document.createElement("p");
@@ -37,7 +36,6 @@ async function getRecipe(){
             
             const listC = JSON.parse(receta.pasos);
             listC.forEach((value, index) => {
-                console.log(value)
                 const li = document.createElement("li");
                 const stepV = document.createElement("span");
                 const divContImg = document.createElement("div");
@@ -69,3 +67,83 @@ async function getRecipe(){
 }
 
 getRecipe()
+
+
+async function raiting(){
+    
+    try {
+        const response = await fetch("../php/MUser.php", {
+            method: "POST",
+            body: JSON.stringify({
+                idRecipe: id,
+            })
+        })
+
+        const data = await response.json();
+
+        
+        if(!data){
+            
+            const stars = document.querySelectorAll(".sectionH--starContainer .star");
+            let rating = 0;
+
+            stars.forEach((star, index) => {
+                const starValue = index + 1;
+                star.dataset.star = starValue;
+
+                star.addEventListener("mouseover", () => {
+                    highlightStars(starValue);
+                });
+
+                star.addEventListener("click", () => {
+                    rating = starValue;
+                    saveRaiting(rating);
+                });
+            });
+
+            document.querySelector(".sectionH--starContainer").addEventListener("mouseleave", () => {
+                highlightStars(rating);
+            });
+
+            function highlightStars(count) {
+                stars.forEach(star => {
+                    star.classList.toggle("active", star.dataset.star <= count);
+                });
+            }
+        }
+
+
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+
+}
+
+raiting()
+
+
+async function saveRaiting(rating) {
+
+    try {
+       
+        const response = await fetch("../php/opinion.php", {
+            method: "POST",
+            body: JSON.stringify({
+                idRecipe: id,
+                rating: rating
+            })
+        });
+
+        const data = await response.json();
+
+        if (data) {
+            console.log("Rating saved successfully");
+        } 
+        
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+
+}
