@@ -7,6 +7,7 @@ async function verifySession(){
 
         const data = await response.json();
         if(data.success){
+            
             return data.dataUser
         }
         else{

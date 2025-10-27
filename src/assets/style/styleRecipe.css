@@ -18,7 +18,7 @@ body{
     justify-content: center;
     justify-items: center;
     grid-template-columns: 100%;
-    gap: 10%;
+    gap: 15%;
     background-color: #FAF3E0;
 }
 
@@ -297,3 +297,60 @@ img{
     font-size: clamp(0.3rem, 2.5vw, 3rem);
 }
 
+
+
+.footerR{
+    width: 100%;
+    height: 40vw;
+    max-height: 40vw;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 90%;
+    grid-template-rows: 100%;
+    padding-top: 5vw;
+    justify-items: center;
+    background-color: #4E4E4E;
+    position: relative;
+}
+.footerR section h2{
+    position: absolute;
+    left: 1vw;
+    top: -1vw;
+    
+    width: fit-content;
+    text-align: center;
+    background-color: #6D765D;
+    padding: 1% 3%;
+    box-sizing: border-box;
+    color: #FAF3E0;
+    font-family: "FuenteStyle";
+    border-radius: 0.5vw;
+    font-weight: 100;
+    font-size: clamp(0.8rem, 4vw, 6rem);
+}
+.footerR section{
+    padding: 0.5vw;
+    width: 100%;
+    
+    box-sizing: border-box;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 15%;
+    background-color: #6D765D;
+}
+
+.footerR section div{
+   background-color: #faf3e088;
+   width: 100%;
+   height: 100%;
+   overflow-y: auto;
+}
+
+.footerR section form{
+    display: grid;
+    place-content: center;
+    grid-template-rows: 100%;
+    grid-template-columns: 1fr 10%;
+    gap: 1vw;
+    padding: 0.5vw;
+}

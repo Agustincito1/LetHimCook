@@ -10,73 +10,120 @@
 
 
     $data = json_decode(file_get_contents("php://input"), true);
-
+    
     if (isset($data['idRecipe'])) {
         $idRecipe = $data['idRecipe'];
     }
     if(isset($_SESSION["user_id"])){
         $idUser = $_SESSION["user_id"];
     }
-
-    try{
-        $query = $pdo->prepare("SELECT 1 FROM opinion WHERE id_usuario = ? AND id_receta = ? LIMIT 1");
+    
+    if(isset($data["tipo"])){
+       
+        $query = $pdo->prepare("SELECT mensaje, puntaje, nombreUsuario FROM opinion, usuario WHERE usuario.id_usuario = ? AND id_receta = ?  limit 1");
         $query->execute([$idUser, $idRecipe]);
-        $exist = $query->fetchColumn() ? true : false;
+        $registro = $query->fetch(PDO::FETCH_ASSOC);
 
+        $query = $pdo->prepare("SELECT mensaje, puntaje, nombreUsuario FROM opinion, usuario WHERE id_receta = ? AND opinion.id_usuario != ?");
+        $query->execute([$idRecipe, $idUser]);
+        $allregistro = $query->fetch(PDO::FETCH_ASSOC);
 
-        if($exist){
-            if(isset($data["rating"])){
-                
-                $rating = $data["rating"];
-                $updateQuery = $pdo->prepare("UPDATE opinion SET puntaje = ? WHERE id_usuario = ? AND id_receta = ?");
-                $updateQuery->execute([$rating, $idUser, $idRecipe]);
-                echo json_encode(true);
-                exit;
-            }
-
-            elseif(isset($data["mensaje"])){
-                $mensaje = $data["mensaje"];
-                $updateQuery = $pdo->prepare("UPDATE opinion SET mensaje = ? WHERE id_usuario = ? AND id_receta = ?");
-                $updateQuery->execute([$mensaje, $idUser, $idRecipe]);
-                echo json_encode(true);
-                exit;
-            }
-            else{
-                echo json_encode(false);
-                exit;
-            }
-                
-            
+        $mensajes = [];
+        if($registro["mensaje"] != ""){
+            $mensajes = json_decode($registro["mensaje"], true);
         }
-        else{
-            
-            if(isset($data["rating"])){
-                $rating = $data["rating"];
-                $insertQuery = $pdo->prepare("INSERT INTO opinion (id_receta, id_usuario, puntaje) VALUES (?, ?, ?)");
-                $insertQuery->execute([$idRecipe, $idUser, $rating]);
-                echo json_encode(true);
-                exit;
-            }
-
-            elseif(isset($data["mensaje"])){
-                $mensaje = $data["mensaje"];
-                $insertQuery = $pdo->prepare("INSERT INTO opinion (id_receta, id_usuario, mensaje) VALUES (?, ?, ?)");
-                $insertQuery->execute([$idRecipe, $idUser, $mensaje]);
-                echo json_encode(true);
-                exit;
-            }
-            else{
-                echo json_encode(false);
-                exit;
-            }
-           
+        if($registro["puntaje"] != ""){
+            $mensajes = json_decode($registro["mensaje"], true);
         }
 
-    }
-    catch(PDOException $err){
         echo json_encode([
-            "success" => false,
-            "error" => $err->getMessage()
+            "success" => true,
+            "AllOpinion" => $allregistro,
+            "myOpinion" => $registro
         ]);
+
+        exit;
+
     }
+    else{
+        try{
+        
+            $query = $pdo->prepare("SELECT mensaje, puntaje FROM opinion WHERE id_usuario = ? AND id_receta = ? limit 1");
+            $query->execute([$idUser, $idRecipe]);
+            $registro = $query->fetch(PDO::FETCH_ASSOC);
+            
+            
+            if($registro){
+
+                if(isset($data["rating"])){
+                    
+                    $rating = $data["rating"];
+                    $updateQuery = $pdo->prepare("UPDATE opinion SET puntaje = ? WHERE id_usuario = ? AND id_receta = ?");
+                    $updateQuery->execute([$rating, $idUser, $idRecipe]);
+                    echo json_encode(true);
+                    exit;
+                }
+
+                elseif(isset($data["mensaje"])){
+                    $newMensaje = "";
+                    $mensajesBD = [];
+
+                    $mensaje = $data["mensaje"];
+
+                    if($registro["mensaje"] != ""){
+                        $mensajesBD = json_decode($registro["mensaje"], true);
+                        $mensajesBD[] = $mensaje;
+                    }
+                    else{
+                        $mensajesBD[] = $mensaje;
+                    }
+                    
+                    $nuevoJson = json_encode($mensajesBD, JSON_UNESCAPED_UNICODE);
+
+                    $updateQuery = $pdo->prepare("UPDATE opinion SET mensaje = ? WHERE id_usuario = ? AND id_receta = ?");
+                    $updateQuery->execute([$nuevoJson, $idUser, $idRecipe]);
+                    echo json_encode(true);
+                    exit;
+                }
+                else{
+                    echo json_encode(false);
+                    exit;
+                }
+                    
+                
+            }
+            else{
+                
+                if(isset($data["rating"])){
+                    $rating = $data["rating"];
+                    $insertQuery = $pdo->prepare("INSERT INTO opinion (id_receta, id_usuario, puntaje) VALUES (?, ?, ?)");
+                    $insertQuery->execute([$idRecipe, $idUser, $rating]);
+                    echo json_encode(true);
+                    exit;
+                }
+
+                elseif(isset($data["mensaje"])){
+                    $mensaje = $data["mensaje"];
+                    $insertQuery = $pdo->prepare("INSERT INTO opinion (id_receta, id_usuario, mensaje) VALUES (?, ?, ?)");
+                    $insertQuery->execute([$idRecipe, $idUser, $mensaje]);
+                    echo json_encode(true);
+                    exit;
+                }
+                else{
+                    echo json_encode(false);
+                    exit;
+                }
+            
+            }
+
+        }
+        catch(PDOException $err){
+            echo json_encode([
+                "success" => false,
+                "error" => $err->getMessage()
+            ]);
+        }
+    }
+
+   
 ?>
