@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2025 a las 04:47:24
+-- Tiempo de generación: 28-10-2025 a las 21:59:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,8 +39,7 @@ CREATE TABLE `cantidad_ingredientes` (
 --
 
 INSERT INTO `cantidad_ingredientes` (`id_cantidadIng`, `cantidad`, `id_ingrediente`, `id_receta`) VALUES
-(1, '2', 953, 45),
-(2, '2', 10414, 45);
+(71, '1233', 953, 64);
 
 -- --------------------------------------------------------
 
@@ -1146,9 +1145,16 @@ CREATE TABLE `opinion` (
   `id_usuario` int(5) DEFAULT NULL,
   `id_receta` int(5) DEFAULT NULL,
   `mensaje` varchar(1000) NOT NULL,
-  `puntaje` float NOT NULL,
-  `fecha` date NOT NULL
+  `puntaje` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `opinion`
+--
+
+INSERT INTO `opinion` (`id_opinion`, `id_usuario`, `id_receta`, `mensaje`, `puntaje`) VALUES
+(1, 2, NULL, '[{\"mensaje\":\"opaopa\",\"fecha\":\"27\\/10\\/2025\"},{\"mensaje\":\"hola\",\"fecha\":\"27\\/10\\/2025\"},{\"mensaje\":\"que onda los pibes\",\"fecha\":\"27\\/10\\/2025\"},{\"mensaje\":\"el nuevo crack\",\"fecha\":\"27\\/10\\/2025\"},{\"mensaje\":\"GOLALAAAS\",\"fecha\":\"27\\/10\\/2025\"}]', 4),
+(4, 1, 64, '[{\"mensaje\":\"aasdasdasdasd\",\"fecha\":\"28\\/10\\/2025\"},{\"mensaje\":\"asdasdasd\",\"fecha\":\"28\\/10\\/2025\"},{\"mensaje\":\"asdads\",\"fecha\":\"28\\/10\\/2025\"},{\"mensaje\":\"adsasdasd\",\"fecha\":\"28\\/10\\/2025\"}]', 0);
 
 -- --------------------------------------------------------
 
@@ -1170,7 +1176,7 @@ CREATE TABLE `receta` (
 --
 
 INSERT INTO `receta` (`id_receta`, `id_usuario`, `titulo`, `pasos`, `descripcion`, `imagenes`) VALUES
-(45, 1, '123', '[{\"paso\":\"2\",\"description\":\"2\"}]', '2', '{\"principal\":\"..\\/uploads\\/receta_68f5a0cda0e8f.webp\",\"pasos\":[\"..\\/uploads\\/paso_68f5a0cda0f9e.webp\"]}');
+(64, 1, '123231123', '[{\"paso\":\"123321\",\"description\":\"213321\"}]', '123123', '{\"principal\":\"..\\/uploads\\/receta_69004782c2eb5.jpeg\",\"pasos\":[\"..\\/uploads\\/paso_69004782c2ffc.jpeg\"]}');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1195,8 @@ CREATE TABLE `recetaguardada` (
 --
 
 INSERT INTO `recetaguardada` (`id_recetaGuardada`, `id_usuario`, `id_receta`) VALUES
-(6, 1, NULL);
+(6, 1, NULL),
+(7, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1265,7 +1272,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombreUsuario`, `contraseña`, `id_tipoUsuario`, `gmail`) VALUES
-(1, 'Gus', '123', 2, 'agustinlazari594@gmail.com'),
+(1, 'Lazaro', '123456', 2, 'agustinlazari594@gmail.com'),
 (2, 'lazarito', '123', 1, 'elgordito@gmail.com');
 
 --
@@ -1338,7 +1345,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cantidad_ingredientes`
 --
 ALTER TABLE `cantidad_ingredientes`
-  MODIFY `id_cantidadIng` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_cantidadIng` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `ingredientes`
@@ -1350,19 +1357,19 @@ ALTER TABLE `ingredientes`
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id_opinion` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_opinion` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `receta`
 --
 ALTER TABLE `receta`
-  MODIFY `id_receta` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_receta` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `recetaguardada`
 --
 ALTER TABLE `recetaguardada`
-  MODIFY `id_recetaGuardada` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_recetaGuardada` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_unidad`

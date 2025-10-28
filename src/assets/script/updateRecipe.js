@@ -84,7 +84,7 @@ buttonAddstep.addEventListener('click', function() {
     stepLi.appendChild(p);
     stepLi.appendChild(input);
     stepLi.appendChild(textarea);
-    stepLi.appendChild(inputFile);
+    previewDiv.appendChild(inputFile);
     stepLi.appendChild(previewDiv);
     stepLi.appendChild(deleteBtn);
 
@@ -233,7 +233,7 @@ function addStep(values, index, ingUrl){
     img.style.borderRadius = '8px';
     img.src = ingUrl;
     previewDiv.appendChild(img);
-
+    
     inputFile.addEventListener('change', function(e) {
         const file = e.target.files[0];
         previewDiv.innerHTML = '';
@@ -251,7 +251,8 @@ function addStep(values, index, ingUrl){
             inputFile.dataset.existe = 'false';
             const img = document.createElement('img');
             img.src = ev.target.result;
-             img.classList.add('imgStep');
+            img.style.height = "100%";
+            img.classList.add('imgStep');
             previewDiv.appendChild(img);
         };
         reader.readAsDataURL(file);
@@ -272,7 +273,8 @@ function addStep(values, index, ingUrl){
     stepLi.appendChild(p);
     stepLi.appendChild(input);
     stepLi.appendChild(textarea);
-    stepLi.appendChild(inputFile);
+    previewDiv.appendChild(inputFile);
+
     stepLi.appendChild(previewDiv);
     stepLi.appendChild(deleteBtn);
 
@@ -715,8 +717,16 @@ form.addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Receta actualizada correctamente');
-            window.location.href = `./recipes.html?id=${id}`;
+            alertT('Receta actualizada correctamente');
+            form.reset();
+            alertT('Receta creada correctamente')
+             document.body.style.overflowY = "hidden";
+            setTimeout(() => {
+               window.location.href = `./recipes.html?id=${id}`;
+            }, 3000)
+            previewPrincipal.innerHTML = '';
+            document.querySelectorAll('.previewPaso').forEach(div => div.innerHTML = '');
+            
 
         } else {
             console.log(data.message)

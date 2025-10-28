@@ -513,7 +513,7 @@ form.addEventListener('submit', function(e) {
         if (data.success) {
             form.reset();
             alertT('Receta creada correctamente')
-    
+            document.body.style.overflowY = "hidden";
             setTimeout(() => {
                 window.location.href = "recipesCreate.html";
             }, 3000)

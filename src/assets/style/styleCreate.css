@@ -88,7 +88,7 @@ body{
     display: grid;
     gap: 3vw;
     grid-template-columns: 1fr;
-    grid-template-rows: 8vw auto 5vw auto auto 8vw;
+    grid-template-rows: 8vw auto 8vw auto auto 8vw;
     padding: 3%;
     padding-top: 8vw;
     padding-bottom: 3%;
@@ -251,9 +251,41 @@ input, button, textarea{
     background-color: #4E4E4E;
 }
 
-#ingredienteslist{
 
+#ingredienteslist::-webkit-scrollbar {
+  width: 0.2vw; 
+  height: 2vw; 
+}
+
+#ingredienteslist::-webkit-scrollbar-track {
+
+  width: 0.5vw;
+  border-radius: 0.5vw;
+}
+
+#ingredienteslist::-webkit-scrollbar-thumb {
+  background-color: #A3B18A;
+  border-radius: 2vw;
+  transition: all 0.2s;
+  height: 5vw;
+}
+
+
+#ingredienteslist::-webkit-scrollbar-thumb:hover {
+  background-color: #A3B18A;
+  border: 0.15vw solid #464646;
+  transition: all 0.2s;
+  
+}
+
+#ingredienteslist::-webkit-scrollbar {
+  width: 0.8vw;
+}
+#ingredienteslist{
+    
+    overflow-y: auto;
     width: 100%;
+    max-height: 30vw;
     display: grid;
     grid-template-columns: 1fr;
     padding-left: 2vw;
@@ -611,17 +643,51 @@ input{
     padding-top: 1vw;
     min-height: 5vw;
     cursor: pointer;
+    max-height: 50vw;
 
+}
+
+.steps__list::-webkit-scrollbar {
+  width: 0.2vw; 
+  height: 2vw; 
+}
+
+.steps__list::-webkit-scrollbar-track {
+
+  width: 0.5vw;
+  border-radius: 0.5vw;
+}
+
+.steps__list::-webkit-scrollbar-thumb {
+  background-color: #A3B18A;
+  border-radius: 2vw;
+  transition: all 0.2s;
+  height: 5vw;
+}
+
+
+.steps__list::-webkit-scrollbar-thumb:hover {
+  background-color: #A3B18A;
+  border: 0.15vw solid #464646;
+  transition: all 0.2s;
+  
+}
+
+.steps__list::-webkit-scrollbar {
+  width: 0.8vw;
 }
 .steps__list{
     background-color: #4E4E4E;
     width: 95%;
+    transition: all 0.5s;
     height: 100%;
     margin: auto;
     padding: 1.5vw;
+    padding-top: 3vw;
     border-radius: 0.5vw;
     display: grid;
     gap: 1vw;
+    overflow-y: auto;
 }
 
 .steps__list li{
@@ -630,7 +696,7 @@ input{
     background-color: #929292;
     display: grid;
     grid-template-columns: 10% 1fr;
-    min-height: 10vw;
+    height: 32vw;
     gap: 1vw;
     padding: 1vw;
 }
