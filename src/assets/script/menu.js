@@ -245,29 +245,26 @@ let isChecked = false;
 arrow.addEventListener("mouseenter" ,()=>{
     if(!isChecked){
         mainA.classList.add("asideLeft");
-        arrow.classList.add("arrow--move");
         isChecked = true;
     }
 
 })
 
-mainA.addEventListener("mouseleave" ,()=>{
+// mainA.addEventListener("mouseleave" ,()=>{
 
-    if (isChecked) {
-        mainA.classList.add("aside--end")
-        mainA.classList.remove("aside--end")
-        mainA.classList.remove("asideLeft");
-        arrow.classList.remove("arrow--move");
-        isChecked = false;
-    }
-})
+//     if (isChecked) {
+//         mainA.classList.add("aside--end")
+//         mainA.classList.remove("aside--end")
+//         mainA.classList.remove("asideLeft");
+//         isChecked = false;
+//     }
+// })
 
 arrow.addEventListener("click", () => {
     if (isChecked) {
         mainA.classList.add("aside--end")
         mainA.classList.remove("aside--end")
         mainA.classList.remove("asideLeft");
-        arrow.classList.remove("arrow--move");
         isChecked = false;
     }
 });

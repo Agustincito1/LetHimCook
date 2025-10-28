@@ -63,9 +63,7 @@ buttonAddstep.addEventListener('click', function() {
         reader.onload = function(ev) {
             const img = document.createElement('img');
             img.src = ev.target.result;
-            img.style.maxWidth = '100%';
-            img.style.maxHeight = '120px';
-            img.style.borderRadius = '8px';
+            img.classList.add('imgStep');
             previewDiv.appendChild(img);
         };
         reader.readAsDataURL(file);
@@ -253,9 +251,7 @@ function addStep(values, index, ingUrl){
             inputFile.dataset.existe = 'false';
             const img = document.createElement('img');
             img.src = ev.target.result;
-            img.style.maxWidth = '100%';
-            img.style.maxHeight = '120px';
-            img.style.borderRadius = '8px';
+             img.classList.add('imgStep');
             previewDiv.appendChild(img);
         };
         reader.readAsDataURL(file);
@@ -359,6 +355,7 @@ async function getRecipe(){
             const imagenPrincipal = imagenes.principal;
             const img = document.createElement('img');
             img.src = imagenPrincipal;
+            img.classList.add('imgPrincipalPreview');
             imgP.appendChild(img)
 
             const imgPasos = imagenes.pasos;   

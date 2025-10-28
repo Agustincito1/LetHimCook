@@ -84,7 +84,11 @@ async function getF() {
             return data.data;
         }
         else{
-            console.log(data.error);
+            const listRecipes = document.getElementById("recipeFav");
+            const p = document.createElement('p');
+            p.id = 'noRecetas';
+            p.textContent = "No has creado ninguna receta aún.";
+            listRecipes.appendChild(p);
         }
 
     } catch (error) {

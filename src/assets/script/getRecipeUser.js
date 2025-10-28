@@ -89,11 +89,14 @@ async function getR() {
                        
                     }
                 });
-                footer.textContent = receta.nombreUsuario || 'Desconocido';
+
+                const pFOOTER = document.createElement('p');
+
+                pFOOTER.textContent = receta.nombreUsuario || 'Desconocido';
 
                 buttonCont.appendChild(imgBut);
                 buttonContE.appendChild(imgButE);
-                
+                footer.appendChild(pFOOTER);
                 footer.appendChild(buttonContE);
                 footer.appendChild(buttonCont);
 
@@ -106,7 +109,12 @@ async function getR() {
             return data.data;
         }
         else{
-            console.log(data.error);
+            const listRecipes = document.getElementById("recipeCreate");
+            const p = document.createElement('p');
+            p.id = 'noRecetas';
+            p.textContent = "No has creado ninguna receta aún.";
+            listRecipes.appendChild(p);
+
         }
 
     } catch (error) {

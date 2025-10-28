@@ -50,7 +50,7 @@ document.querySelectorAll('#steplist li').forEach(function(li) {
             reader.onload = function(ev) {
                 const img = document.createElement('img');
                 img.src = ev.target.result;
-            img.classList.add('imgPrincipalPreview');
+                img.classList.add('imgStep');
                 previewDiv.appendChild(img);
             };
             reader.readAsDataURL(file);
@@ -148,6 +148,7 @@ buttonAddIng.addEventListener('click', function() {
 
     inputC.type = 'text';
     inputC.name = 'cantidadIngrediente';
+  
 
     input.classList.add(`ingrediente-${nuevoNumero}`);
     input.type = 'text';
@@ -156,7 +157,7 @@ buttonAddIng.addEventListener('click', function() {
 
     inputC.classList.add('ingredienteC');
     inputC.classList.add(`ingredienteUnity-${nuevoNumero}`);
-    inputC.placeholder = "";
+    inputC.placeholder = "Cantidad";
 
     input.placeholder = 'Ingrediente';
     input.setAttribute('list', 'ingredientesDatalist'); 
@@ -239,8 +240,11 @@ buttonAddstep.addEventListener('click', function() {
     previewDiv.classList.add('previewPaso');
 
     inputFile.addEventListener('change', function(e) {
+
+
         const file = e.target.files[0];
         previewDiv.innerHTML = '';
+       previewDiv.appendChild(inputFile);
         if (!file) return;
         if (!file.type.startsWith('image/')) {
             const error = document.createElement('p');
@@ -254,9 +258,7 @@ buttonAddstep.addEventListener('click', function() {
         reader.onload = function(ev) {
             const img = document.createElement('img');
             img.src = ev.target.result;
-            img.style.maxWidth = '100%';
-            img.style.maxHeight = '120px';
-            img.style.borderRadius = '8px';
+            img.classList.add('imgStep');
             previewDiv.appendChild(img);
         };
         reader.readAsDataURL(file);
@@ -277,7 +279,7 @@ buttonAddstep.addEventListener('click', function() {
     stepLi.appendChild(p);
     stepLi.appendChild(input);
     stepLi.appendChild(textarea);
-    stepLi.appendChild(inputFile);
+    previewDiv.appendChild(inputFile);
     stepLi.appendChild(previewDiv);
     stepLi.appendChild(deleteBtn);
 

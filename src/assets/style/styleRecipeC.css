@@ -5,6 +5,11 @@
     font-weight: 100;
 }
 
+@font-face {
+    font-family: 'FuenteStyleII';
+    src: url('../style/font/Karla-VariableFont_wght.ttf') format('truetype');
+    font-weight: 500;
+}
 
 
 body{
@@ -12,14 +17,20 @@ body{
     display: grid;
     grid-template-rows: 100% auto;
     padding: 1vw;
+    padding: 0;
+    overflow: hidden;
+    margin: 0;
 }
 
 .header{
     top: 0;
     left: 0;
+
     position: absolute;
 }
+
 .main{
+    padding: 0.8vw;
     height: 100%;
     display: grid;
     justify-content: center;
@@ -36,7 +47,7 @@ body{
 
 }
 .section__container{
-    background-color: #FFFFFF;
+    background-color: #FAF3E0;
     width: 50%;
     height: 100%;
     border-radius: 0.5vw;
@@ -72,3 +83,62 @@ body{
     height: 100%;
 }
 
+.recipe footer {
+    position: absolute;
+    top: 82%;
+    left:0%;
+    display: grid;
+    grid-template-columns: auto 15% 15%;
+    grid-template-rows: 4vw;
+    gap: 1vw;
+    border-radius: 0.5vw;
+   
+    width:100%;
+    height: fit-content;
+    text-align: center;
+    display: grid;
+    justify-content: start;
+    color: #333333;
+    font-family: 'FuenteStyle';
+    padding: 0;
+ padding-left: 0.5vw;
+    background-color: transparent;
+}
+
+.recipe footer p{
+    
+    background-color: #FAF3E0;
+    margin: 0;
+    
+    padding: 0.1vw 1vw;
+    font-family: "FuenteStyle";
+    display: grid;
+    place-items: center;
+    width: fit-content;
+    border-radius: 0.5vw;
+    font-size: clamp(0.2rem, 2.2vw, 7rem);
+
+}
+.recipe footer div{
+    
+    cursor: pointer;
+    background-color: #FAF3E0;
+    display: grid;
+    place-items: center;
+    border-radius: 0.2vw;
+    padding: 0.4vw;
+    border: none;
+    transition: all 0.2s;
+}
+.recipe footer div img{
+    width: 2vw;
+    display: grid;
+    place-items: center;
+}
+.recipe footer div:hover{
+    transform: scale(1.1,1.1);
+}
+
+#modAdd{
+    left: 80%;
+}
