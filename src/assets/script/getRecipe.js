@@ -216,6 +216,7 @@ formMensaje.addEventListener("submit", (e) => {
         if(enviarMensaje(mensaje)){
             const comentariosCont = document.getElementById("comentariosCont");
             const mensajeDiv = document.createElement("div");
+            const p = document.createElement("p");
             const fecha = document.createElement("span");
             const username = document.createElement("h4");
             username.textContent = window.nameUser;
@@ -223,8 +224,8 @@ formMensaje.addEventListener("submit", (e) => {
             fecha.classList.add("fechaComentario");
             fecha.textContent = fechaStr;
             mensajeDiv.classList.add("comentarioUser");
-            mensajeDiv.textContent = mensaje;
-            
+            p.textContent = mensaje;
+            mensajeDiv.appendChild(p);
             mensajeDiv.appendChild(username);
             mensajeDiv.appendChild(fecha);
             comentariosCont.appendChild(mensajeDiv);
@@ -254,29 +255,39 @@ document.addEventListener("DOMContentLoaded", async () => {
             const comentariosCont = document.getElementById("comentariosCont");
 
             if(AllOpinion){
-                AllOpinion.forEach((value) => {
 
+                const comentariosAll = JSON.parse(AllOpinion.mensaje);
+                comentariosAll.forEach((value) => {
                     const mensajeDiv = document.createElement("div");
                     const fecha = document.createElement("span");
+                    const p = document.createElement("p");
                     const username = document.createElement("h4");
                     username.textContent = value.nombreUsuario;
                     
                     fecha.classList.add("fechaComentario");
                     fecha.textContent = value.mensaje.fecha;
                     mensajeDiv.classList.add("comentarioUser");
-                    mensajeDiv.textContent = value.mensaje.mensaje;
-                    
+                    p.textContent = value.mensaje;
+                    mensajeDiv.appendChild(p);
                     mensajeDiv.appendChild(username);
                     mensajeDiv.appendChild(fecha);
+                    
                     comentariosCont.appendChild(mensajeDiv);
+                    
+                 
                 });
 
             }
 
             if(myopinions){
-                const comentarios = JSON.parse(myopinions.mensaje);
-                comentarios.forEach((value) => {
+               
+
+                if(myopinions.mensaje){
+                    const comentarios = JSON.parse(myopinions.mensaje);
+                    comentarios.forEach((value) => {
+                        
                     const mensajeDiv = document.createElement("div");
+                    const p = document.createElement("p");
                     const fecha = document.createElement("span");
                     const username = document.createElement("h4");
                     username.textContent = myopinions.nombreUsuario;
@@ -284,12 +295,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                     fecha.classList.add("fechaComentario");
                     fecha.textContent = value.fecha;
                     mensajeDiv.classList.add("comentarioUser");
-                    mensajeDiv.textContent = value.mensaje;
-                    
+                    p.textContent = value.mensaje;
+                    mensajeDiv.appendChild(p);
                     mensajeDiv.appendChild(username);
                     mensajeDiv.appendChild(fecha);
                     comentariosCont.appendChild(mensajeDiv);
+                    
+                 
                 });
+                }
+
                
             }
 

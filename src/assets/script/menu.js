@@ -91,8 +91,12 @@ async function getRecipes(id) {
                 main.appendChild(p);
 
                 // Footer con nombre de usuario
+                const pFOOTER = document.createElement('p');
+
+                pFOOTER.textContent = receta.nombreUsuario || 'Desconocido';
+
                 const footer = document.createElement('footer');
-                footer.textContent = receta.nombreUsuario || 'Desconocido';
+        
 
                 if (id !== receta.id_usuario){
                     const buttonCont = document.createElement('div');
@@ -116,9 +120,15 @@ async function getRecipes(id) {
                             }
                         });
                     }
+                    
                     buttonCont.appendChild(imgBut);
+                    footer.appendChild(pFOOTER)
                     footer.appendChild(buttonCont)
+                   
                 }
+
+
+
                 a.appendChild(header);
                 a.appendChild(main);
                 a.appendChild(footer);
@@ -223,8 +233,17 @@ input.addEventListener("input", async function(e) {
         main.appendChild(p);
 
         // Footer con nombre de usuario
+    
+        
+        
+        const pFOOTER = document.createElement('p');
+
+        pFOOTER.textContent = receta.nombreUsuario || 'Desconocido';
+
+
         const footer = document.createElement('footer');
-        footer.textContent = receta.nombreUsuario || 'Desconocido';       
+
+        footer.appendChild(pFOOTER);
         a.appendChild(header);
         a.appendChild(main);
         a.appendChild(footer);
@@ -353,7 +372,12 @@ btnSearch.addEventListener("click" ,async (e)=>{
 
                 // Footer con nombre de usuario
                 const footer = document.createElement('footer');
-                footer.textContent = receta.nombreUsuario || 'Desconocido';       
+
+                const pFOOTER = document.createElement('p');
+
+                pFOOTER.textContent = receta.nombreUsuario || 'Desconocido';
+
+                footer.appendChild(pFOOTER);  
                 a.appendChild(header);
                 a.appendChild(main);
                 a.appendChild(footer);

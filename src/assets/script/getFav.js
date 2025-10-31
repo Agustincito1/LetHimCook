@@ -1,3 +1,6 @@
+
+import { alertT } from './alert.js';
+
 async function delfav(id) {
     try {
         const res = await fetch(`../php/delFav.php`, {
@@ -65,14 +68,25 @@ async function getF() {
                 buttonCont.addEventListener("click", (e)=>{
                     e.preventDefault()
                     if(delfav(receta.id_receta)){
-                        location.reload();
+                        alertT("Receta eliminada correctamente")
+                            
+                        setTimeout(()=>{
+                            location.reload();
+                        }, 2000)
+                    
                     }
                 });
-                footer.textContent = receta.nombreUsuario || 'Desconocido';
+
+                const pFOOTER = document.createElement('p');
+
+                pFOOTER.textContent = receta.nombreUsuario || 'Desconocido';
+
                 buttonCont.appendChild(imgBut);
+
+
+                footer.appendChild(pFOOTER);
                 footer.appendChild(buttonCont);
 
-               
 
                 a.appendChild(header);
                 a.appendChild(main);

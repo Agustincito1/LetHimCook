@@ -507,3 +507,72 @@ body{
 #ingredientesList::-webkit-scrollbar {
   width: 0.8vw;
 }
+
+
+
+
+#buttonAddFav img{
+    width: 2vw;
+}
+
+
+
+.recipe footer {
+    position: absolute;
+    top: 82%;
+    left:0%;
+    display: grid;
+    grid-template-columns: auto 15% 15%;
+    grid-template-rows: 4vw;
+    gap: 1vw;
+    border-radius: 0.5vw;
+   
+    width:100%;
+    height: fit-content;
+    text-align: center;
+    display: grid;
+    justify-content: start;
+    color: #333333;
+    font-family: 'FuenteStyle';
+    padding: 0;
+ padding-left: 0.5vw;
+    background-color: transparent;
+}
+
+.recipe footer p{
+    
+    background-color: #FAF3E0;
+    margin: 0;
+    
+    padding: 0.1vw 1vw;
+    font-family: "FuenteStyle";
+    display: grid;
+    place-items: center;
+    width: fit-content;
+    border-radius: 0.5vw;
+    font-size: clamp(0.2rem, 2.2vw, 7rem);
+
+}
+.recipe footer div{
+    
+    cursor: pointer;
+    background-color: #FAF3E0;
+    display: grid;
+    place-items: center;
+    border-radius: 0.2vw;
+    padding: 0.4vw;
+    border: none;
+    transition: all 0.2s;
+}
+.recipe footer div img{
+    width: 2vw;
+    display: grid;
+    place-items: center;
+}
+.recipe footer div:hover{
+    transform: scale(1.1,1.1);
+}
+
+#modAdd{
+    left: 80%;
+}

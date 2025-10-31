@@ -17,10 +17,11 @@
     if(isset($_SESSION["user_id"])){
         $idUser = $_SESSION["user_id"];
     }
+
     
     if(isset($data["tipo"])){
        
-        $query = $pdo->prepare("SELECT mensaje, puntaje, nombreUsuario FROM opinion, usuario WHERE usuario.id_usuario = ? AND id_receta = ?  limit 1");
+        $query = $pdo->prepare("SELECT mensaje, puntaje, nombreUsuario FROM opinion, usuario WHERE opinion.id_usuario = ? AND id_receta = ?  limit 1");
         $query->execute([$idUser, $idRecipe]);
         $registro = $query->fetch(PDO::FETCH_ASSOC);
 
